@@ -51,7 +51,7 @@ cmake \
 
 cmake ..
 
-MAKECMD=ninja
+MAKECMD=make
 
 # Don't use ninja's default number of threads becuase it can
 # saturate Travis's available memory.
