@@ -73,7 +73,6 @@ cmake .. \
     -DBUILD_PLUGIN_SQLITE=ON \
     -DWITH_LASZIP=ON \
     -DWITH_LAZPERF=ON \
-    -DWITH_EXAMPLES=ON \
     -DWITH_TESTS=ON
 
 make -j2
