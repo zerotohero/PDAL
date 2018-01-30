@@ -19,7 +19,7 @@ cd $destdir/pdaldocs
 git config user.email "pdal@hobu.net"
 git config user.name "PDAL Travis docsbot"
 
-git add -A
+git add
 git commit -m "update with results of commit https://github.com/PDAL/PDAL/commit/$TRAVIS_COMMIT for ${DATE}"
 git push origin master
 
