@@ -11,6 +11,7 @@ git checkout master
 
 cd $builddir/html
 cp -rf * $destdir/pdaldocs
+git status
 
 cd $builddir/latex/
 cp PDAL.pdf $destdir/pdaldocs
