@@ -21,9 +21,7 @@ git config user.email "pdal@hobu.net"
 git config user.name "PDAL Travis docsbot"
 
 
-git add --ignore-removal .
-git status
-ls -Ralh
+git add -A .
 git commit -m "update with results of commit https://github.com/PDAL/PDAL/commit/$TRAVIS_COMMIT for ${DATE}"
 git push origin master
 
