@@ -1,13 +1,12 @@
-FROM alpine:3.6
+FROM alpine:3.7
 
 RUN \
     echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories; \
+    echo "@edgecommunity http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories; \
     apk update; \
     apk add --no-cache --virtual .build-deps \
         alpine-sdk \
-        unzip \
         cmake \
-        eigen-dev \
         hexer-dev \
         nitro-dev \
         gdal-dev \
@@ -31,7 +30,13 @@ RUN \
         cython-dev \
         jsoncpp-dev \
         py-packaging \
-    ; \
+        unzip \
+        ca-certificates \
+        wget \
+    ;\
+    apk add --no-cache --virtual .build-deps \
+        eigen-dev@edgecommunity \
+    ;\
     apk add --no-cache \
         hexer \
         nitro \
