@@ -83,8 +83,18 @@ int MergeKernel::execute()
     }
 
     Stage& writer = makeWriter(m_outputFile, filter, "");
-    writer.prepare(table);
-    writer.execute(table);
+    if (writer.pipelineStreamable())
+    {
+        FixedPointTable table(10000);
+        writer.prepare(table);
+        writer.execute(table);
+    }
+    else
+    {
+        PointTable table;
+        writer.prepare(table);
+        writer.execute(table);
+    }
     return 0;
 }
 
