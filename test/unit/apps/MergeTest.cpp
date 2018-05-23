@@ -57,8 +57,8 @@ TEST(Merge, pdalinfoTest_no_input)
     std::string output;
     EXPECT_EQ(Utils::run_shell_command(cmd, output), 1);
 
-    const std::string expected = "PDAL: kernels.merge: Missing value for positional "
-        "argument 'files'.";
+    const std::string expected("PDAL: kernels.merge: Missing value for "
+        "positional argument 'files'.");
     EXPECT_EQ(output.substr(0, expected.length()), expected);
 }
 
@@ -108,3 +108,23 @@ TEST(Merge, Args)
     FileUtils::deleteFile(outfile);
 }
 
+
+TEST(Merge, Stream)
+{
+    std::string file1(Support::datapath("las/utm15.las"));
+    std::string file2(Support::datapath("las/utm17.las"));
+    std::string outfile(Support::temppath("out.las"));
+    std::string cmd = appName() + " --verbose=debug " +
+        file1 + " " + file2 + " " + outfile + " 2>&1";
+
+    std::string output;
+    EXPECT_EQ(Utils::run_shell_command(cmd, output), 0);
+    EXPECT_TRUE(output.find("stream mode") != std::string::npos);
+
+    // Text output doesn't support stream mode now.
+    outfile = "out.txt";
+    cmd = appName() + " --verbose=debug " +
+        file1 + " " + file2 + " " + outfile + " 2>&1";
+    EXPECT_EQ(Utils::run_shell_command(cmd, output), 0);
+    EXPECT_TRUE(output.find("standard mode") != std::string::npos);
+}
