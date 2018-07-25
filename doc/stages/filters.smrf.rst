@@ -69,6 +69,12 @@ cut
 dir
   Optional output directory for debugging intermediate rasters.
 
+ignore
+  A :ref:`range <ranges>` of values of a dimension to ignore.
+
+last
+  Only consider "last" returns. [Default: **true**]
+
 scalar
   Elevation scalar. [Default: **1.25**]
 
