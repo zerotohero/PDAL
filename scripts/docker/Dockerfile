@@ -1,89 +1,14 @@
-FROM alpine:3.7
+FROM pdal/dependencies:ubuntu
+MAINTAINER Howard Butler <howard@hobu.co>
 
-RUN \
-    echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories; \
-    echo "@edgecommunity http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories; \
-    apk update; \
-    apk add --no-cache --virtual .build-deps \
-        alpine-sdk \
-        cmake \
-        hexer-dev \
-        nitro-dev \
-        gdal-dev \
-        geos-dev \
-        laz-perf-dev \
-        libgeotiff-dev \
-        libxml2-dev \
-        python-dev \
-        py-numpy-dev \
-        jsoncpp-dev \
-        hdf5-dev \
-        proj4-dev \
-        cpd-dev \
-        fgt-dev \
-        sqlite-dev \
-        postgresql-dev \
-        curl-dev \
-        linux-headers \
-        laszip-dev \
-        libspatialite-dev \
-        cython-dev \
-        jsoncpp-dev \
-        py-packaging \
-        unzip \
-        ca-certificates \
-        wget \
-    ;\
-    apk add --no-cache --virtual .build-deps \
-        eigen-dev@edgecommunity \
-    ;\
-    apk add --no-cache \
-        hexer \
-        nitro \
-        gdal \
-        geos \
-        laz-perf \
-        libgeotiff \
-        libxml2 \
-        python \
-        py-numpy \
-        jsoncpp \
-        hdf5 \
-        proj4 \
-        cpd \
-        fgt \
-        sqlite \
-        postgresql \
-        libcurl \
-        laszip \
-        libspatialite \
-        jsoncpp \
-        py-setuptools \
-    ;\
-    mkdir /vdatum; \
-    cd /vdatum; \
-    wget http://download.osgeo.org/proj/vdatum/usa_geoid2012.zip && unzip -j -u usa_geoid2012.zip -d /usr/share/proj; \
-    wget http://download.osgeo.org/proj/vdatum/usa_geoid2009.zip && unzip -j -u usa_geoid2009.zip -d /usr/share/proj; \
-    wget http://download.osgeo.org/proj/vdatum/usa_geoid2003.zip && unzip -j -u usa_geoid2003.zip -d /usr/share/proj; \
-    wget http://download.osgeo.org/proj/vdatum/usa_geoid1999.zip && unzip -j -u usa_geoid1999.zip -d /usr/share/proj; \
-    wget http://download.osgeo.org/proj/vdatum/vertcon/vertconc.gtx && mv vertconc.gtx /usr/share/proj; \
-    wget http://download.osgeo.org/proj/vdatum/vertcon/vertcone.gtx && mv vertcone.gtx /usr/share/proj; \
-    wget http://download.osgeo.org/proj/vdatum/vertcon/vertconw.gtx && mv vertconw.gtx /usr/share/proj; \
-    wget http://download.osgeo.org/proj/vdatum/egm96_15/egm96_15.gtx && mv egm96_15.gtx /usr/share/proj; \
-    wget http://download.osgeo.org/proj/vdatum/egm08_25/egm08_25.gtx && mv egm08_25.gtx /usr/share/proj; \
-    cd /; \
-    rm -rf /vdatum; \
-    wget https://github.com/PDAL/PDAL/archive/1.6-maintenance.tar.gz; \
-    tar -xf 1.6-maintenance.tar.gz; \
-    rm 1.6-maintenance.tar.gz; \
-    cd /PDAL-1.6-maintenance; \
+RUN     git clone https://github.com/PDAL/PDAL.git /pdal; \
+    cd /pdal; \
+    git checkout 1.6-maintenance; \
     mkdir -p _build; \
     cd _build; \
     cmake .. \
         -G "Unix Makefiles" \
         -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_C_COMPILER=gcc \
-        -DCMAKE_CXX_COMPILER=g++ \
         -DCMAKE_MAKE_PROGRAM=make \
         -DBUILD_PLUGIN_PYTHON=ON \
         -DBUILD_PLUGIN_CPD=ON \
@@ -93,16 +18,140 @@ RUN \
         -DBUILD_PLUGIN_ICEBRIDGE=ON \
         -DBUILD_PLUGIN_PGPOINTCLOUD=ON \
         -DBUILD_PLUGIN_SQLITE=ON \
+        -DBUILD_PLUGIN_PCL=ON \
         -DWITH_LASZIP=ON \
         -DWITH_LAZPERF=ON \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        -DCMAKE_INSTALL_LIBDIR=lib \
     ; \
     make -j2; \
     make install; \
     cd ../python; \
     python setup.py install; \
     cd /; \
-    rm -rf /PDAL-1.6-maintenance; \
-    apk del .build-deps
+    rm -rf /pdal; \
+    git clone https://github.com/PDAL/PRC.git ; \
+    cd PRC; \
+    git checkout master ; \
+    mkdir build ; \
+    cd build ; \
+    cmake \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DPDAL_DIR=/usr/lib/pdal/cmake \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+        .. ; \
+    make; \
+    make install; \
+    cd /; \
+    rm -rf /PRC;
 
-CMD ["pdal"]
+RUN    apt-get purge -y \
+        build-essential \
+        ca-certificates \
+        cmake \
+        curl \
+        gfortran \
+        git \
+        libarmadillo-dev \
+        libarpack2-dev \
+        libflann-dev \
+        libhdf5-serial-dev \
+        liblapack-dev \
+        libtiff5-dev \
+        openssh-client \
+        python-dev \
+        python-numpy \
+        python-software-properties \
+        software-properties-common \
+        wget \
+        automake \
+        libtool \
+        libspatialite-dev \
+        libhdf5-dev \
+        subversion \
+        libjsoncpp-dev \
+        libboost-filesystem1.65-dev \
+        libboost-iostreams1.65-dev \
+        libboost-program-options1.65-dev \
+        libboost-system1.65-dev \
+        libboost-thread1.65-dev \
+        subversion \
+        clang \
+        libproj-dev \
+        libc6-dev \
+        libnetcdf-dev \
+        libpng-dev \
+        libjpeg-dev \
+        libgif-dev \
+        libwebp-dev \
+        libhdf4-alt-dev \
+        libhdf5-dev \
+        libpq-dev \
+        libxerces-c-dev \
+        unixodbc-dev \
+        libsqlite3-dev \
+        libgeos-dev \
+        libmysqlclient-dev \
+        libltdl-dev \
+        libcurl4-openssl-dev \
+        libspatialite-dev \
+        libdap-dev\
+        cython \
+        python-pip \
+    ; \
+    apt-get autoremove -y; \
+    apt-get update; \
+    apt-get install -y \
+        libexpat1 \
+        libgomp1 \
+        libxml2 \
+        libgeos-c1v5 \
+        libjsoncpp1 \
+        libcurl3 \
+        libarmadillo8 \
+        libwebp6 \
+        libodbc1 \
+        odbcinst1debian2 \
+        libxerces-c3.2 \
+        netcdf-bin \
+        libhdf4-0-alt \
+        libgif7 \
+        libpq5 \
+        libdapclient6v5 \
+        libspatialite7 \
+        libsqlite3-mod-spatialite \
+        spatialite-bin \
+        libmysqlclient20 \
+        libtiff5 \
+        libboost-system1.65.1 \
+        libboost-filesystem1.65.1 \
+        libboost-thread1.65.1 \
+        libboost-program-options1.65.1 \
+        libboost-iostreams1.65.1 \
+        libboost-date-time1.65.1 \
+        libboost-serialization1.65.1 \
+        libboost-chrono1.65.1 \
+        libboost-atomic1.65.1 \
+        libboost-regex1.65.1 \
+        libflann1.9 \
+        libpython2.7 \
+        libhdf5-cpp-100 \
+        libpcl-common1.8 \
+        libpcl-features1.8 \
+        libpcl-filters1.8 \
+        libpcl-io1.8 \
+        libpcl-kdtree1.8 \
+        libpcl-keypoints1.8 \
+        libpcl-octree1.8 \
+        libpcl-outofcore1.8 \
+        libpcl-people1.8 \
+        libpcl-recognition1.8 \
+        libpcl-registration1.8 \
+        libpcl-sample-consensus1.8 \
+        libpcl-search1.8 \
+        libpcl-segmentation1.8 \
+        libpcl-surface1.8 \
+        libpcl-tracking1.8 \
+        libpcl-visualization1.8
+
 
