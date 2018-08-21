@@ -3,11 +3,13 @@
 
 echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 echo "@edgecommunity http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories; \
+echo "@edgemain http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories; \
 apk update
 apk add \
     cmake \
     alpine-sdk \
     eigen-dev@edgecommunity \
+    libressl2.7-libcrypto@edgemain \
     hexer \
     hexer-dev \
     nitro \
