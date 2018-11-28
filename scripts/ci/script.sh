@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/ash
 # Builds and tests PDAL
 
 gcc --version
@@ -10,11 +10,8 @@ mkdir -p _build || exit 1
 cd _build || exit 1
 
 cmake .. \
-    -G "Unix Makefiles" \
+    -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_C_COMPILER=gcc \
-    -DCMAKE_CXX_COMPILER=g++ \
-    -DCMAKE_MAKE_PROGRAM=make \
     -DBUILD_PLUGIN_PYTHON=ON \
     -DBUILD_PLUGIN_CPD=ON \
     -DBUILD_PLUGIN_GREYHOUND=ON \
@@ -46,6 +43,6 @@ do
     cd /pdal/examples/$EXAMPLE
     mkdir -p _build || exit 1
     cd _build || exit 1
-    cmake -G "Unix Makefiles" .. && \
-    make
+    cmake -G "Ninja" .. && \
+    ninja
 done
