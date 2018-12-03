@@ -1,16 +1,14 @@
 #!/bin/bash
 
 TRAVIS_BUILD_DIR=$1
+KEY=$2
+KEY_INIT=$3
 
 echo "publishing website"
+echo "TRAVIS_BUILD_DIR=$TRAVIS_BUILD_DIR"
+echo "KEY=$KEY"
+echo "KEY_INIT=$KEY_INIT"
 
-if [ -n $encrypted_6a5172b96922_key ]
-then
-    ./build_docs.sh
-    # Args: keyfile, encrypted key, encrypted init vector
-    ./add_deploy_key.sh pdaldocs-private.key $encrypted_6a5172b96922_key \
-        $encrypted_6a5172b96922_iv
-    ./deploy_website.sh $TRAVIS_BUILD_DIR/doc/build /tmp
-else
-    echo "No encryption key available."
-fi
+./build_docs.sh $TRAVIS_BUILD_DIR
+./add_deploy_key.sh pdaldocs-private.key $KEY $KEY_INIT
+./deploy_website.sh $TRAVIS_BUILD_DIR/doc/build /tmp

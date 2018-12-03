@@ -15,10 +15,12 @@ script:
 
 after_success: |
   if [[ "$TRAVIS_SECURE_ENV_VARS" == "true" &&
-        "$TRAVIS_BRANCH" == "1.8-maintenance" ]]
+        "$TRAVIS_BRANCH" == "1.8-maintenance" &&
+        -n "$encrypted_6a5172b96922_key" ]]
   then
       cd scripts/ci
-      ./after_success.sh $TRAVIS_BUILD_DIR
+      ./after_success.sh $TRAVIS_BUILD_DIR $encrypted_6a5172b96922_key \
+            $encrypted_6a5172b96922_iv
   fi
 
 notifications:
