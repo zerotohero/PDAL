@@ -955,7 +955,6 @@ bool LasWriter::writeLasZipBuf(PointRef& point)
         p.extended_classification = classification;
         p.extended_return_number = returnNumber;
         p.extended_number_of_returns = numberOfReturns;
-
     }
     else
     {
@@ -963,6 +962,7 @@ bool LasWriter::writeLasZipBuf(PointRef& point)
         p.number_of_returns = numberOfReturns;
         p.scan_angle_rank = point.getFieldAs<int8_t>(Id::ScanAngleRank);
         p.classification = classification;
+        p.extended_point_type = 0;
     }
 
     if (m_lasHeader.hasTime())
