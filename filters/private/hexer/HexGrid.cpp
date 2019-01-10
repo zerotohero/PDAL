@@ -39,13 +39,39 @@
 #include "HexGrid.hpp"
 #include "HexIter.hpp"
 #include "Mathpair.hpp"
-#include "Processor.hpp"
 #include "Segment.hpp"
 
 using namespace std;
 
 namespace hexer
 {
+
+namespace
+{
+
+// Compute hex size based on distance between consecutive points and
+// density.  The probably needs some work based on more data.
+double computeHexSize(const std::vector<Point>& samples, int density)
+{
+    auto distance = [](const Point& p1, const Point& p2)
+    {
+        double xdist = p2.m_x - p1.m_x;
+        double ydist = p2.m_y - p1.m_y;
+        return std::sqrt(xdist * xdist + ydist * ydist);
+    };
+
+    double dist = 0;
+    for (std::vector<Point>::size_type i = 0; i < samples.size() - 1; ++i)
+    {
+        Point p1 = samples[i];
+        Point p2 = samples[i + 1];
+        dist += distance(p1, p2);
+    }
+    return ((density * dist) / samples.size());
+}
+
+} // unnamed namespace
+
 
 HexGrid::HexGrid(int dense_limit) : m_height(-1.0), m_width(-1.0),
     m_pos_roots(HexCompare()), m_dense_limit(dense_limit), m_miny(1)
