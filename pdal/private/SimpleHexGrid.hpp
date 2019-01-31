@@ -34,6 +34,7 @@
 
 #pragma once
 
+#include <cstdint>
 #include <vector>
 
 #include "Mathpair.hpp"
@@ -59,6 +60,8 @@ struct HexKey
     bool even() const
         { return (bool)((m_key.p.m_x & 0x1) == 0); }
 
+    bool operator < (const HexKey& other) const
+        { return m_key.m_val < other.m_key.m_val; }
     bool operator == (const HexKey& other) const
         { return m_key.m_val == other.m_key.m_val; }
 
