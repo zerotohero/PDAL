@@ -37,13 +37,17 @@
 #include <stdlib.h>
 #include <vector>
 
-#include "Mathpair.hpp"
+#include <pdal/private/Mathpair.hpp>
 
+namespace pdal
+{
 namespace hexer
 {
 
 class Hexagon;
 class HexGrid;
+
+using Point = Mathpair<double>;
 
 class Segment
 {
@@ -86,5 +90,6 @@ private:
     int m_side;
 };
 
-} // namespace
+} // namespace hexer
+} // namespace pdal
 

@@ -38,13 +38,13 @@
 #include <pdal/Streamable.hpp>
 #include <pdal/util/ProgramArgs.hpp>
 
+namespace pdal
+{
+
 namespace hexer
 {
     class HexGrid;
-};
-
-namespace pdal
-{
+}
 
 class PDAL_DLL HexBin : public Filter, public Streamable
 {

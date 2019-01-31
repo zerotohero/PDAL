@@ -36,6 +36,8 @@
 
 using namespace std;
 
+namespace pdal
+{
 namespace hexer
 {
 
@@ -97,4 +99,5 @@ void Path::toWKT( std::ostream& output) const
     }
 }
 
-} // namespace
+} // namespace hexer
+} // namespace pdal

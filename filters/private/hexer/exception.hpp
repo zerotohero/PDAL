@@ -35,6 +35,8 @@
 
 #include <stdexcept>
 
+namespace pdal
+{
 namespace hexer
 {
 
@@ -47,4 +49,5 @@ public:
 };
 
 } // namespace hexer
+} // namespace pdal
 

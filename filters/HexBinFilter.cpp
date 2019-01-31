@@ -38,8 +38,6 @@
 #include "private/hexer/HexIter.hpp"
 #include <pdal/Polygon.hpp>
 
-using namespace hexer;
-
 namespace pdal
 {
 
@@ -91,11 +89,11 @@ void HexBin::ready(PointTableRef table)
     m_count = 0;
     if (m_edgeLength == 0.0)  // 0 can always be represented exactly.
     {
-        m_grid.reset(new HexGrid(m_density));
+        m_grid.reset(new hexer::HexGrid(m_density));
         m_grid->setSampleSize(m_sampleSize);
     }
     else
-        m_grid.reset(new HexGrid(m_edgeLength * sqrt(3), m_density));
+        m_grid.reset(new hexer::HexGrid(m_edgeLength * sqrt(3), m_density));
 }
 
 
@@ -170,9 +168,9 @@ void HexBin::done(PointTableRef table)
     if (m_outputTesselation)
     {
         MetadataNode hexes = m_metadata.add("hexagons");
-        for (HexIter hi = m_grid->hexBegin(); hi != m_grid->hexEnd(); ++hi)
+        for (auto hi = m_grid->hexBegin(); hi != m_grid->hexEnd(); ++hi)
         {
-            HexInfo h = *hi;
+            hexer::HexInfo h = *hi;
 
             MetadataNode hex = hexes.addList("hexagon");
             hex.add("density", h.density());
@@ -263,9 +261,9 @@ void HexBin::done(PointTableRef table)
     int n(0);
     point_count_t totalCount(0);
     double totalArea(0.0);
-    for (HexIter hi = m_grid->hexBegin(); hi != m_grid->hexEnd(); ++hi)
+    for (auto hi = m_grid->hexBegin(); hi != m_grid->hexEnd(); ++hi)
     {
-        HexInfo h = *hi;
+        hexer::HexInfo h = *hi;
         totalCount += h.density();
         totalArea += hex_area;
         ++n;

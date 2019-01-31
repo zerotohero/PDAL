@@ -36,6 +36,8 @@
 #include "Segment.hpp"
 #include "HexGrid.hpp"
 
+namespace pdal
+{
 namespace hexer
 {
 
@@ -45,7 +47,7 @@ bool Segment::possibleRoot(HexGrid *grid)
     if (m_side == 3)
     {
         m_side = 0;
-        m_hex = grid->getHexagon(m_hex->x(), m_hex->y() + 1);
+        m_hex = grid->getHexagon(HexKey(m_hex->x(), m_hex->y() + 1));
     }
     return m_hex->possibleRoot() && (m_side == 0);
 }
@@ -58,9 +60,9 @@ Segment Segment::rightAntiClockwise(HexGrid *grid)
     static int nextside[] = { 5, 0, 1, 2, 3, 4 };
     static int neighborside[] = { 1, 2, 3, 4, 5, 0 };
 
-    Coord coord = m_hex->neighborCoord(neighborside[m_side]);
+    HexKey neighborKey = grid->neighbor(m_hex->key(), neighborside[m_side]);
     next.m_side = nextside[m_side];
-    next.m_hex = grid->getHexagon(coord.m_x, coord.m_y);
+    next.m_hex = grid->getHexagon(neighborKey);
     return next;
 }
 
@@ -96,9 +98,9 @@ Segment Segment::leftClockwise(HexGrid *grid)
     static int nextside[] = { 1, 2, 3, 4, 5, 0 };
     static int neighborside[] = { 5, 0, 1, 2, 3, 4 };
 
-    Coord coord = m_hex->neighborCoord(neighborside[m_side]);
+    HexKey neighborKey = grid->neighbor(m_hex->key(), neighborside[m_side]);
     next.m_side = nextside[m_side];
-    next.m_hex = grid->getHexagon(coord.m_x, coord.m_y);
+    next.m_hex = grid->getHexagon(neighborKey);
     return next;
 }
 
@@ -107,9 +109,9 @@ void Segment::normalize(HexGrid *grid)
 {
     if (m_side >= 3)
     {
-        Coord coord = m_hex->neighborCoord(m_side);
+        HexKey neighborKey = grid->neighbor(m_hex->key(), m_side);
         m_side -= 3;
-        m_hex = grid->getHexagon(coord.m_x, coord.m_y);
+        m_hex = grid->getHexagon(neighborKey);
     }
 }
 
@@ -181,4 +183,5 @@ std::ostream& operator << (std::ostream& os, const Segment &s)
 };
 
 } // namespace hexer
+} // namespace pdal
 

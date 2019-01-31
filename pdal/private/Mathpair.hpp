@@ -34,7 +34,7 @@
 
 #pragma once
 
-namespace hexer
+namespace pdal
 {
 
 template <typename T>
@@ -76,8 +76,5 @@ public:
     }
 };
 
-typedef Mathpair<double> Point;
-typedef Mathpair<int> Coord;
-
-} // namespace hexer
+} // namespace pdal
 

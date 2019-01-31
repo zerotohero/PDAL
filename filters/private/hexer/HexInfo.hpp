@@ -33,6 +33,10 @@
  ****************************************************************************/
 #pragma once
 
+#include "Hexer.hpp"
+
+namespace pdal
+{
 namespace hexer
 {
 
@@ -56,4 +60,5 @@ public:
 };
 
 } // namespace hexer
+} // namespace pdal
 

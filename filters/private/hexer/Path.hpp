@@ -36,9 +36,12 @@
 #include <vector>
 #include <ostream>
 
-#include "Mathpair.hpp"
+#include <pdal/private/Mathpair.hpp>
+
 #include "Segment.hpp"
 
+namespace pdal
+{
 namespace hexer
 {
 
@@ -104,4 +107,5 @@ private:
 };
 
 } //namespace hexer
+} //namespace pdal
 

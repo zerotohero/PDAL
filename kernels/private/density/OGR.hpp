@@ -38,13 +38,13 @@
 #include "ogr_api.h"
 #include "gdal.h"
 
+
+namespace pdal
+{
 namespace hexer
 {
     class HexGrid;
 }
-
-namespace pdal
-{
 
 class OGR
 {

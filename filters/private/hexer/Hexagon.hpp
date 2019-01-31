@@ -33,10 +33,13 @@
  ****************************************************************************/
 #pragma once
 
-#include <stdint.h>
+#include <cstdint>
 
-#include "Mathpair.hpp"
+#include <pdal/private/Mathpair.hpp>
+#include <pdal/private/SimpleHexGrid.hpp>
 
+namespace pdal
+{
 namespace hexer
 {
 
@@ -47,26 +50,17 @@ public:
         m_dense_neighbors(0)
         {}
 
-    uint64_t key()
-    {
-        return key(m_x, m_y);
-    }
-
     void increment()
        { m_count++; }
-
-    static uint64_t key(int32_t x, int32_t y)
-    {
-        uint32_t ux = (uint32_t)x;
-        uint32_t uy = (uint32_t)y;
-        return (ux | ((uint64_t)uy << 32));
-    }
 
     int x() const
         { return m_x; }
 
     int y() const
         { return m_y; }
+
+    HexKey key() const
+        { return HexKey(m_x, m_y); }
 
     bool xodd() const
         { return (x() % 2 != 0); }
@@ -101,7 +95,6 @@ public:
 
     bool less(const Hexagon *h) const;
     bool yless(Hexagon *h) const;
-    Coord neighborCoord(int dir) const;
 
 private:
     int32_t m_x;
@@ -118,5 +111,6 @@ public:
         { return h1->less(h2); }
 };
 
-} // namespace
+} // namespace hexer
+} // namespace pdal
 
