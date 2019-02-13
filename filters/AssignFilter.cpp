@@ -74,7 +74,7 @@ struct AssignRange : public DimRange
         return *this;
     }
 
-    AssignRange(AssignRange& r) : DimRange(r), m_value(r.m_value),
+    AssignRange(const AssignRange& r) : DimRange(r), m_value(r.m_value),
         m_parser(new expr::Parser)
     {}
 
