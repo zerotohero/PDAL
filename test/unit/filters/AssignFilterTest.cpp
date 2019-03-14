@@ -53,7 +53,7 @@ ro.add("count", 10);
 
     Options fo;
     fo.add("assignment", "X[:]=27.5");
-    fo.add("assignment", "Classification[:]=200-200");
+    fo.add("assignment", "Classification[:]=200-199");
     fo.add("assignment", "GpsTime[:]=(3000)");
     fo.add("assignment", "Red[:]=GpsTime");
 
@@ -88,7 +88,7 @@ ro.add("count", 10);
     {
         EXPECT_DOUBLE_EQ(v->getFieldAs<double>(Dimension::Id::X, i), 27.5);
         EXPECT_EQ(v->getFieldAs<uint16_t>(
-            Dimension::Id::Classification, i), 0);
+            Dimension::Id::Classification, i), 1);
         EXPECT_DOUBLE_EQ(v->getFieldAs<double>(
             Dimension::Id::GpsTime, i), 3000.0);
         EXPECT_EQ(v->getFieldAs<int>(
