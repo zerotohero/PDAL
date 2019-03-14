@@ -140,7 +140,7 @@ private:
         return n;
     }
 
-    Token popToken();
+    Token popToken(TokenClass cls = TokenClass::Any);
     void pushToken(const Token& tok);
     bool expression();
     bool addexpr();

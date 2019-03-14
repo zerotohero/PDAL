@@ -45,6 +45,7 @@ TEST(AssignFilterTest, value)
 {
     Options ro;
     ro.add("filename", Support::datapath("autzen/autzen-dd.las"));
+ro.add("count", 10);
 
     StageFactory factory;
     Stage& r = *(factory.createStage("readers.las"));
@@ -52,9 +53,9 @@ TEST(AssignFilterTest, value)
 
     Options fo;
     fo.add("assignment", "X[:]=27.5");
-    fo.add("assignment", "Classification[:]=0");
-    fo.add("assignment", "GpsTime[:]=3000");
-    fo.add("assignment", "Red[:]=255");
+    fo.add("assignment", "Classification[:]=200-200");
+    fo.add("assignment", "GpsTime[:]=(3000)");
+    fo.add("assignment", "Red[:]=GpsTime");
 
     Stage& f = *(factory.createStage("filters.assign"));
     f.setInput(r);
@@ -91,7 +92,7 @@ TEST(AssignFilterTest, value)
         EXPECT_DOUBLE_EQ(v->getFieldAs<double>(
             Dimension::Id::GpsTime, i), 3000.0);
         EXPECT_EQ(v->getFieldAs<int>(
-            Dimension::Id::Red, i), 255);
+            Dimension::Id::Red, i), 3000.0);
     }
 }
 

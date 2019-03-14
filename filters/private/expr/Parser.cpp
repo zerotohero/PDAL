@@ -35,15 +35,15 @@ double Parser::eval(PointRef& p) const
 }
 
 
-Token Parser::popToken()
+// ABELL - This needs reworking since we may pop as another class.
+Token Parser::popToken(TokenClass cls)
 {
     if (m_tokens.empty())
-        return m_lexer.get();
+        return m_lexer.get(cls);
     Token tok = m_tokens.top();
     m_tokens.pop();
     return tok;
 }
-
 
 void Parser::pushToken(const Token& tok)
 {
@@ -65,7 +65,7 @@ bool Parser::addexpr()
 
     while (true)
     {
-        Token tok = popToken();
+        Token tok = popToken(TokenClass::Operator);
         NodeType type;
         if (tok.type() == TokenType::Plus)
             type = NodeType::Plus;
@@ -110,7 +110,7 @@ bool Parser::multexpr()
 
     while (true)
     {
-        Token tok = popToken();
+        Token tok = popToken(TokenClass::Operator);
         NodeType type;
         if (tok.type() == TokenType::Multiply)
             type = NodeType::Multiply;

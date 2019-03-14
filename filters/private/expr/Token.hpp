@@ -8,6 +8,12 @@ namespace pdal
 namespace expr
 {
 
+enum class TokenClass
+{
+    Operator,
+    Any
+};
+
 enum class TokenType
 {
     Eof,
@@ -47,6 +53,8 @@ public:
         m_type(type), m_start(start), m_end(end)
     {}
     Token(TokenType type) : m_type(type), m_start(0), m_end(0)
+    {}
+    Token() : m_type(TokenType::Error), m_start(0), m_end(0)
     {}
 
     TokenType type() const

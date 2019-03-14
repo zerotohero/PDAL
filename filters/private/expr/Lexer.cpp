@@ -7,7 +7,7 @@ namespace pdal
 namespace expr
 {
 
-Token Lexer::get()
+Token Lexer::get(TokenClass cls)
 {
     char c;
 
@@ -17,7 +17,11 @@ Token Lexer::get()
     if (m_pos == m_buf.size())
         return Token(TokenType::Eof);
 
-    Token tok = get(m_buf[m_pos]);
+    Token tok;
+    if (cls == TokenClass::Operator)
+        tok = getOperator(m_buf[m_pos]);
+    else
+        tok = get(m_buf[m_pos]);
     m_pos = tok.end();
     return tok;
 }
@@ -27,31 +31,35 @@ Token Lexer::get(char c)
 {
     Token tok(TokenType::Error);
 
-    if (c == '+')
-    {
+    tok = getOperator(c);
+    if (tok.valid())
+        return tok;
+
+    if (c == '+' || c == '-' || isdigit(c))
         tok = number();
-        if (!tok.valid())
-            tok = Token(TokenType::Plus, m_pos, m_pos + 1);
-    }
-    else if (c == '-')
-    {
-        tok = number();
-        if (!tok.valid())
-            tok = Token(TokenType::Minus, m_pos, m_pos + 1);
-    }
-    else if (c == '/')
-        tok = Token(TokenType::Divide, m_pos, m_pos + 1);
-    else if (c == '*')
-        tok = Token(TokenType::Multiply, m_pos, m_pos + 1);
     else if (c == '(')
         tok = Token(TokenType::Lparen, m_pos, m_pos + 1);
     else if (c == ')')
         tok = Token(TokenType::Rparen, m_pos, m_pos + 1);
-    else if (isdigit(c))
-        tok = number();
     else if (isalpha(c))
         tok = dimension();
 
+    return tok;
+}
+
+
+Token Lexer::getOperator(char c)
+{
+    Token tok(TokenType::Error);
+
+    if (c == '+')
+        tok = Token(TokenType::Plus, m_pos, m_pos + 1);
+    else if (c == '-')
+        tok = Token(TokenType::Minus, m_pos, m_pos + 1);
+    else if (c == '/')
+        tok = Token(TokenType::Divide, m_pos, m_pos + 1);
+    else if (c == '*')
+        tok = Token(TokenType::Multiply, m_pos, m_pos + 1);
     return tok;
 }
 

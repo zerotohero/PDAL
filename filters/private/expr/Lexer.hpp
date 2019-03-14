@@ -22,10 +22,11 @@ public:
         m_pos = 0;
     }
 
-    Token get();
+    Token get(TokenClass cls = TokenClass::Any);
 
 private:
     Token get(char c);
+    Token getOperator(char c);
     Token number();
     Token dimension();
 
