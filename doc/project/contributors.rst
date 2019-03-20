@@ -36,17 +36,16 @@ primitive objects, and first stage implementations.
 .. _`Michael Gerlek`: http://github.com/mpgerlek
 
 
-.. image:: ./Radiant-Solutions-Logo-Color-1920.png
-    :width: 300px
-    :target: http://radiantsolutions.com
+.. image:: ./maxar_logo_teal_250.png
+    :target: https://www.maxar.com/
 
-`Bradley Chambers`_ from `RadiantSolutions`_ has contributed numerous features
-and capabilities to the PDAL project, including :ref:`Poisson sampling
-<filters.sample>` and :ref:`Progressive Morphological Filters
-<pcl_ground>`. He is also a prolific :ref:`tutorial` writer.
+`Bradley Chambers`_ from `Maxar`_ has contributed numerous features and
+capabilities to the PDAL project, including :ref:`Poisson sampling
+<filters.sample>` and :ref:`ground`. He is also a prolific :ref:`tutorial`
+writer.
 
 .. _`Bradley Chambers`: https://github.com/chambbj
-.. _`RadiantSolutions`: http://radiantsolutions.com/
+.. _`Maxar`: https://www.maxar.com/
 
 
 Funding Contributors

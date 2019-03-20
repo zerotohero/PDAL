@@ -1,0 +1,16 @@
+{
+    "pipeline": [
+        {
+            "type": "filters.outlier"
+        },
+        {
+            "type": "filters.smrf",
+            "ignore": "Classification[7:7]",
+            "cut": 20
+        },
+        {
+            "type": "filters.range",
+            "limits": "Classification[2:2]"
+        }
+    ]
+}

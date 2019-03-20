@@ -274,8 +274,7 @@ Additional parameters can be set by advanced users:
 (These examples are taken from the unit tests
 `PCLBlockFilterTest_example_PMF_1` and `PCLBlockFilterTest_example_PMF_2`.)
 
-See :ref:`here <pcl_ground>` for a more detailed
-explanation of the PMF parameters.
+See :ref:`here <ground>` for a more detailed explanation of the PMF parameters.
 
 .. _`JSON`: http://www.json.org/
 .. _`PassThrough`: http://pointclouds.org/documentation/tutorials/passthrough.php
