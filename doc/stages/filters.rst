@@ -37,6 +37,7 @@ invalidate an existing KD-tree.
    filters.colorinterp
    filters.colorization
    filters.covariancefeatures
+   filters.csf
    filters.dem
    filters.eigenvalues
    filters.estimaterank
@@ -79,6 +80,9 @@ invalidate an existing KD-tree.
 :ref:`filters.covariancefeatures`
     Filter that calculates local features based on the covariance matrix of a
     point's neighborhood.
+
+:ref:`filters.csf`
+    Label ground/non-ground returns using [Zhang2016]_.
 
 :ref:`filters.eigenvalues`
     Compute pointwise eigenvalues, based on k-nearest neighbors.
