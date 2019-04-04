@@ -189,8 +189,8 @@ bool Shr3dder::setDTM0(std::string dtmFile) {
 
     // Need to match scales and offsets between DSM and DTM
     float maxImageVal = (float) (pow(2.0, int(sizeof(unsigned short) * 8)) - 1);
-    float offset = std::min(dtm0Image.offset,dsmImage.offset);
-    float maxz = std::max(dtm0Image.offset+maxImageVal*dtm0Image.scale,
+    float offset = (std::min)(dtm0Image.offset,dsmImage.offset);
+    float maxz = (std::max)(dtm0Image.offset+maxImageVal*dtm0Image.scale,
             dsmImage.offset+maxImageVal*dsmImage.scale);
     float scale = (maxz-offset) / maxImageVal;
 
@@ -322,13 +322,13 @@ void Shr3dder::createIntensity() {
             int y = my*pset.y(i) + by;
             int z = mz*pset.z(i) + bz;
 
-            for (int y1 = std::max(y,0); y1 <= std::min(y+1,(int) dsmImage.height-1); ++y1) {
-                for (int x1 = std::max(x,0); x1 <= std::min(x+1,(int) dsmImage.width-1); ++x1) {
+            for (int y1 = (std::max)(y,0); y1 <= (std::min)(y+1,(int) dsmImage.height-1); ++y1) {
+                for (int x1 = (std::max)(x,0); x1 <= (std::min)(x+1,(int) dsmImage.width-1); ++x1) {
                     int z0 = dsmImage.data[y1][x1];
                     if (abs(z-z0) < dz_short) {
                         sumImage.data[y1][x1] += pset.i(i);
                         ++cntImage.data[y1][x1];
-                        max_i = std::max(max_i, sumImage.data[y1][x1] / cntImage.data[y1][x1]);
+                        max_i = (std::max)(max_i, sumImage.data[y1][x1] / cntImage.data[y1][x1]);
                     }
                 }
             }
@@ -375,8 +375,8 @@ void Shr3dder::createMinAGL() {
             int y = my*pset.y(i) + by;
             unsigned short z = mz*pset.z(i) + bz;
 
-            for (int y1 = std::max(y,0); y1 <= std::min(y+1,(int) minAglImage.height-1); ++y1) {
-                for (int x1 = std::max(x,0); x1 <= std::min(x+1,(int) minAglImage.width-1); ++x1) {
+            for (int y1 = (std::max)(y,0); y1 <= (std::min)(y+1,(int) minAglImage.height-1); ++y1) {
+                for (int x1 = (std::max)(x,0); x1 <= (std::min)(x+1,(int) minAglImage.width-1); ++x1) {
                     unsigned short& z0 = minAglImage.data[y1][x1];
                     const unsigned short& z1 = dtmImage.data[y1][x1];
                     if (z1 && (z > z1+agl_short)  && (!z0 || z < z0))
@@ -402,7 +402,7 @@ void Shr3dder::createMinAGL() {
     // Apply filter to the image
     minAglImage.filter([&](unsigned short* val, const unsigned short& ref, std::vector<unsigned short> &ngbrs) {
         // Find quantile
-        size_t ix = std::min((size_t) floor(quantile * ngbrs.size()),ngbrs.size()-1);
+        size_t ix = (std::min)((size_t) floor(quantile * ngbrs.size()),ngbrs.size()-1);
         std::partial_sort(ngbrs.begin(), ngbrs.begin() + (ix + 1), ngbrs.end());
         short qValue = static_cast<short>(ngbrs[ix]);
         // Only replace if it differs by more than dz from the median
