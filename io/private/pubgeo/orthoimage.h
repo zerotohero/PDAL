@@ -383,8 +383,8 @@ namespace pubgeo {
                 int y = my*pset.y(i) + by;
                 TYPE z = mz*pset.z(i) + bz;
 
-                for (int y1 = std::max(y,0); y1 <= std::min(y+1,(int) this->height-1); ++y1) {
-                    for (int x1 = std::max(x,0); x1 <= std::min(x+1,(int) this->width-1); ++x1) {
+                for (int y1 = (std::max)(y,0); y1 <= (std::min)(y+1,(int) this->height-1); ++y1) {
+                    for (int x1 = (std::max)(x,0); x1 <= (std::min)(x+1,(int) this->width-1); ++x1) {
                         TYPE& z0 = this->data[y1][x1];
                         if (!z0 || compare(z,z0))
                             z0 = z;
@@ -526,12 +526,12 @@ namespace pubgeo {
         // cell value to the median, we're comparing it against the specified quantile
         void quantileFilter(int rad, TYPE dzScaled, float quantile, TYPE voidVal = 0, bool skipVoids = true) {
             // Filter quantile
-            quantile = std::max(0.0f,std::min(1.0f,quantile));
+            quantile = (std::max)(0.0f,(std::min)(1.0f,quantile));
 
             // Apply filter to the image
             Image<TYPE>::filter([&](TYPE* val, const TYPE& ref, std::vector<TYPE> &ngbrs) {
                 // Find quantile
-                size_t ix = std::min((size_t) floor(quantile * ngbrs.size()),ngbrs.size()-1);
+                size_t ix = (std::min)((size_t) floor(quantile * ngbrs.size()),ngbrs.size()-1);
                 std::partial_sort(ngbrs.begin(), ngbrs.begin() + (ix + 1), ngbrs.end());
                 STYPE qValue = static_cast<STYPE>(ngbrs[ix]);
                 // Only replace if it differs by more than dz from the median

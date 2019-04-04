@@ -113,16 +113,16 @@ namespace pubgeo {
 
                     for (unsigned int j = k; j < src->height; j+=N) {
                         // Define row bounds:
-                        unsigned int j1 = std::max((int) j - rad, 0);
-                        unsigned int j2 = std::min(j + rad, src->height - 1);
+                        unsigned int j1 = (std::max)((int) j - rad, 0);
+                        unsigned int j2 = (std::min)(j + rad, src->height - 1);
 
                         for (unsigned int i = 0; i < src->width; i++) {
                             // Skip if void.
                             if (skipVoids && (src->data[j][i] == voidVal)) continue;
 
                             // Define bounds;
-                            unsigned int i1 = std::max((int) i - rad, 0);
-                            unsigned int i2 = std::min(i + rad, src->width - 1);
+                            unsigned int i1 = (std::max)((int) i - rad, 0);
+                            unsigned int i2 = (std::min)(i + rad, src->width - 1);
 
                             // Add valid values to the list.
                             for (unsigned int jj = j1; jj <= j2; jj++) {
@@ -179,13 +179,13 @@ namespace pubgeo {
 
                     for (unsigned int j = k; j < dest->height; j+=N) {
                         // Define row bounds:
-                        unsigned int j1 = std::max((int) j - rad, 0);
-                        unsigned int j2 = std::min(j + rad, dest->height - 1);
+                        unsigned int j1 = (std::max)((int) j - rad, 0);
+                        unsigned int j2 = (std::min)(j + rad, dest->height - 1);
 
                         for (unsigned int i = 0; i < dest->width; i++) {
                             // Define column bounds:
-                            unsigned int i1 = std::max((int) i - rad, 0);
-                            unsigned int i2 = std::min(i + rad, dest->width - 1);
+                            unsigned int i1 = (std::max)((int) i - rad, 0);
+                            unsigned int i2 = (std::min)(i + rad, dest->width - 1);
 
                             std::pair<TYPE_A,TYPE_B> ref = std::make_pair(A->data[j][i],B->data[j][i]);
                             if (selectFunc(ref)) {

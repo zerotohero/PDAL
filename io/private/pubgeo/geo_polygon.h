@@ -726,10 +726,10 @@ private:
         unsigned int w = 0;
         double c = 1.0/scale;
         for (size_t j = i; j!=next(k); j=next(j))
-            wts[j]=std::min(++w,scale)*c;
+            wts[j]=(std::min)(++w,scale)*c;
         w = 0;
         for (size_t j = k; j!=prev(i); j=prev(j))
-            wts[j]=wts[j]*std::min(++w,scale)*c;
+            wts[j]=wts[j]*(std::min)(++w,scale)*c;
 
         // Compute least squares of parametric x and y
         for (size_t d = 0; d < 2; ++d) {
