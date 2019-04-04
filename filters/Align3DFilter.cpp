@@ -95,12 +95,12 @@ PointViewSet Align3dFilter::run(PointViewPtr view)
 
     // Get overlapping bounds.
     align3d::AlignBounds bounds;
-    bounds.xmin = std::max(referenceDSM.easting, targetDSM.easting);
-    bounds.ymin = std::max(referenceDSM.northing, targetDSM.northing);
+    bounds.xmin = (std::max)(referenceDSM.easting, targetDSM.easting);
+    bounds.ymin = (std::max)(referenceDSM.northing, targetDSM.northing);
     bounds.xmax =
-        std::min(referenceDSM.easting + (referenceDSM.width * referenceDSM.gsd),
+        (std::min)(referenceDSM.easting + (referenceDSM.width * referenceDSM.gsd),
                  targetDSM.easting + (targetDSM.width * targetDSM.gsd));
-    bounds.ymax = std::min(
+    bounds.ymax = (std::min)(
         referenceDSM.northing + (referenceDSM.height * referenceDSM.gsd),
         targetDSM.northing + (targetDSM.height * targetDSM.gsd));
     bounds.width = bounds.xmax - bounds.xmin;
