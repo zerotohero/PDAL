@@ -169,7 +169,7 @@ namespace pubgeo {
         static void filter2(Image<TYPE>* dest, const Image<TYPE_A>* A, const Image<TYPE_B>* B,
                 SelectionFunction selectFunc, ImFilterFunction filterFunc, int rad = 1) {
             std::vector<std::thread> workers;
-            unsigned int N = std::min(std::thread::hardware_concurrency(), dest->height);
+            unsigned int N = (std::min)(std::thread::hardware_concurrency(), dest->height);
             for (unsigned int k = 0; k < N; ++k) {
                 workers.push_back(std::thread([=](){
 
