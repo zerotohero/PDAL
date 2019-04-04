@@ -103,7 +103,7 @@ namespace pubgeo {
             // TODO: Double check that src and dest are the same size
 
             std::vector<std::thread> workers;
-            unsigned int N = std::min(std::thread::hardware_concurrency(),src->height);
+            unsigned int N = (std::min)(std::thread::hardware_concurrency(),src->height);
             for (unsigned int k = 0; k < N; ++k) {
                 workers.push_back(std::thread([=](){
 
