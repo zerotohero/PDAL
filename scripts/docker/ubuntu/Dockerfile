@@ -160,6 +160,10 @@ RUN git clone --depth 1 --branch v0.5.1 https://github.com/gadomski/cpd.git \
 #    cd /; \
 #    rm -rf TileDB-${tiledb_version};
 
+RUN echo PDAL version: ${PDAL_VERSION}
+ADD https://api.github.com/repos/PDAL/PDAL/commits?sha=${PDAL_VERSION} \
+    /tmp/pdal-bust-cache
+
 RUN git clone --depth 1 --branch ${PDAL_VERSION} https://github.com/PDAL/PDAL.git pdal-git; \
     cd pdal-git;  \
     mkdir build;\
