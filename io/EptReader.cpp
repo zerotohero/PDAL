@@ -44,11 +44,8 @@
 
 #include <pdal/GDALUtils.hpp>
 #include <pdal/SrsBounds.hpp>
-#include <pdal/util/Algorithm.hpp>
-
-#ifdef PDAL_HAVE_ZSTD
 #include <pdal/compression/ZstdCompression.hpp>
-#endif
+#include <pdal/util/Algorithm.hpp>
 
 namespace pdal
 {
