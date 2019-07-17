@@ -35,20 +35,16 @@
 #pragma once
 
 #include <array>
-#include <cstddef>
-#include <cstdint>
 #include <memory>
 #include <mutex>
-#include <set>
+
+#include <nlohmann/json.hpp>
 
 #include <pdal/Reader.hpp>
-#include <pdal/Streamable.hpp>
 #include <pdal/util/Bounds.hpp>
+#include <pdal/Streamable.hpp>
 
-namespace Json
-{
-    class Value;
-}
+#include <nlohmann/json.hpp>
 
 namespace pdal
 {
@@ -65,13 +61,17 @@ class FixedPointLayout;
 class Key;
 class Pool;
 
-class PDAL_DLL EptReader : public Reader
+class PDAL_DLL EptReader : public Reader, public Streamable
 {
+    FRIEND_TEST(EptReaderTest, getRemoteType);
+    FRIEND_TEST(EptReaderTest, getCoercedType);
+
 public:
     EptReader();
     virtual ~EptReader();
     std::string getName() const override;
 
+private:
     virtual void addArgs(ProgramArgs& args) override;
     virtual void initialize() override;
     virtual QuickInfo inspect() override;
@@ -79,7 +79,6 @@ public:
     virtual void ready(PointTableRef table) override;
     virtual PointViewSet run(PointViewPtr view) override;
 
-private:
     // If argument "origin" is specified, this function will clip the query
     // bounds to the bounds of the specified origin and set m_queryOriginId to
     // the selected OriginId value.  If the selected origin is not found, throw.
@@ -89,9 +88,8 @@ private:
     // points from a walk through the hierarchy.  Each of these keys will be
     // downloaded during the 'read' section.
     void overlaps();
-    void overlaps(
-            const arbiter::Endpoint& ep, std::map<Key, uint64_t>& target,
-            const Json::Value& current, const Key& key);
+    void overlaps(const arbiter::Endpoint& ep, std::map<Key, uint64_t>& target,
+            const NL::json& current, const Key& key);
 
     uint64_t readLaszip(PointView& view, const Key& key, uint64_t nodeId) const;
     uint64_t readBinary(PointView& view, const Key& key, uint64_t nodeId) const;
@@ -101,41 +99,25 @@ private:
     void readAddon(PointView& dst, const Key& key, const Addon& addon,
             uint64_t startId) const;
 
+    // To allow testing of hidden getRemoteType() and getCoercedType().
+    static Dimension::Type getRemoteTypeTest(const NL::json& dimInfo);
+    static Dimension::Type getCoercedTypeTest(const NL::json& dimInfo);
+
+    //For streamable pipeline.
+    virtual bool processOne(PointRef& point) override;
+    void loadNextOverlap();
+    void fillPoint(PointRef& point);
+
     std::string m_root;
 
     std::unique_ptr<arbiter::Arbiter> m_arbiter;
     std::unique_ptr<arbiter::Endpoint> m_ep;
     std::unique_ptr<EptInfo> m_info;
 
-    class Args
-    {
-    public:
-        Args();
+    struct Args;
 
-        Bounds& boundsArg() { return m_bounds; }
-        std::string& originArg() { return m_origin; }
-        std::size_t& threadsArg() { return m_threads; }
-        double& resolutionArg() { return m_resolution; }
-        Json::Value& addonsArg() { return *m_addons; }
+    std::unique_ptr<Args> m_args;
 
-        BOX3D bounds() const;
-        std::string origin() const { return m_origin; }
-        std::size_t threads() const
-        {
-            return std::max<std::size_t>(4, m_threads);
-        }
-        double resolution() const { return m_resolution; }
-        const Json::Value& addons() const { return *m_addons; }
-
-    private:
-        Bounds m_bounds;
-        std::string m_origin;
-        std::size_t m_threads = 0;
-        double m_resolution = 0;
-        std::unique_ptr<Json::Value> m_addons;
-    };
-
-    Args m_args;
     BOX3D m_queryBounds;
     int64_t m_queryOriginId = -1;
     std::unique_ptr<Pool> m_pool;
@@ -153,6 +135,13 @@ private:
 
     Dimension::Id m_nodeIdDim = Dimension::Id::Unknown;
     Dimension::Id m_pointIdDim = Dimension::Id::Unknown;
+
+    // For streamable pipeline.
+    uint64_t m_nodeId = 1;
+    std::unique_ptr<PointTable> m_bufferPointTable;
+    PointViewPtr m_bufferPointView;
+    PointLayoutPtr m_bufferLayout;
+    point_count_t m_currentIndex = -1;
 };
 
 } // namespace pdal

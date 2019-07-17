@@ -8,7 +8,7 @@ normalize common dimension types, like X, Y, Z, or Intensity, which are often
 found in LiDAR point clouds. Not all dimension types need to be fixed, however.
 Database drivers typically return unstructured lists of dimensions.  A reader
 might provide a simple file type, like :ref:`readers.text`, a complex database
-like :ref:`readers.oci`, or a network service like :ref:`readers.greyhound`.
+like :ref:`readers.oci`, or a network service like :ref:`readers.ept`.
 
 
 .. toctree::
@@ -19,10 +19,10 @@ like :ref:`readers.oci`, or a network service like :ref:`readers.greyhound`.
    readers.bpf
    readers.buffer
    readers.ept
+   readers.e57
    readers.faux
    readers.gdal
    readers.geowave
-   readers.greyhound
    readers.i3s
    readers.ilvis2
    readers.las
@@ -59,6 +59,9 @@ like :ref:`readers.oci`, or a network service like :ref:`readers.greyhound`.
 :ref:`readers.ept`
     Used for reading `Entwine Point Tile <https://entwine.io>`__ format.
 
+:ref:`readers.e57`
+    Read point clouds in the E57 format.
+
 :ref:`readers.faux`
     Used for testing pipelines. It does not read from a file or database, but
     generates synthetic data to feed into the pipeline.
@@ -68,9 +71,6 @@ like :ref:`readers.oci`, or a network service like :ref:`readers.greyhound`.
 
 :ref:`readers.geowave`
     Read point cloud data from Accumulo.
-
-:ref:`readers.greyhound`
-    Query point cloud data from a Greyhound server.
 
 :ref:`readers.i3s`
     Read data stored in the Esri I3S format.  The data is read from an

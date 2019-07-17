@@ -34,7 +34,7 @@
 
 #include <pdal/pdal_test_main.hpp>
 
-#include <json/json.h>
+#include <nlohmann/json.hpp>
 
 #include <pdal/util/FileUtils.hpp>
 #include <filters/AssignFilter.hpp>
@@ -45,6 +45,12 @@
 #include "Support.hpp"
 
 using namespace pdal;
+
+namespace
+{
+    const std::string eptLaszipPath(
+            "ept://" + Support::datapath("ept/lone-star-laszip"));
+}
 
 TEST(EptAddonWriterTest, fullLoop)
 {
@@ -58,7 +64,7 @@ TEST(EptAddonWriterTest, fullLoop)
         EptReader reader;
         {
             Options o;
-            o.add("filename", "ept://" + Support::datapath("ept/ept-star"));
+            o.add("filename", eptLaszipPath);
             reader.setOptions(o);
         }
 
@@ -92,7 +98,7 @@ TEST(EptAddonWriterTest, fullLoop)
 
         EptAddonWriter writer;
         {
-            Json::Value addons;
+            NL::json addons;
             addons[addonDir + "class"] = "Classification";
             addons[addonDir + "other"] = "Other";
 
@@ -111,12 +117,12 @@ TEST(EptAddonWriterTest, fullLoop)
     // with the addon values.
     EptReader reader;
     {
-        Json::Value addons;
+        NL::json addons;
         addons["Classification"] = addonDir + "class";
         addons["Other"] = addonDir + "other";
 
         Options o;
-        o.add("filename", "ept://" + Support::datapath("ept/ept-star"));
+        o.add("filename", eptLaszipPath);
         o.add("addons", addons);
         reader.setOptions(o);
     }
@@ -154,7 +160,7 @@ TEST(EptAddonWriterTest, boundedWrite)
         EptReader reader;
         {
             Options o;
-            o.add("filename", "ept://" + Support::datapath("ept/ept-star"));
+            o.add("filename", eptLaszipPath);
             o.add("bounds", boundsString);
             reader.setOptions(o);
         }
@@ -169,7 +175,7 @@ TEST(EptAddonWriterTest, boundedWrite)
 
         EptAddonWriter writer;
         {
-            Json::Value addons;
+            NL::json addons;
             addons[addonDir + "bounded"] = "Classification";
 
             Options o;
@@ -188,11 +194,11 @@ TEST(EptAddonWriterTest, boundedWrite)
 
     EptReader reader;
     {
-        Json::Value addons;
+        NL::json addons;
         addons["Classification"] = addonDir + "bounded";
 
         Options o;
-        o.add("filename", "ept://" + Support::datapath("ept/ept-star"));
+        o.add("filename", eptLaszipPath);
         o.add("addons", addons);
         reader.setOptions(o);
     }
@@ -248,7 +254,7 @@ TEST(EptAddonWriterTest, mustDescendFromEptReader)
     EptAddonWriter writer;
     {
         Options o;
-        Json::Value addons;
+        NL::json addons;
         addons[Support::datapath("ept/addon/bad")] = "ReturnNumber";
         o.add("addons", addons);
         writer.setOptions(o);

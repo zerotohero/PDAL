@@ -46,7 +46,7 @@ namespace pdal
 namespace
 {
 
-const std::vector<std::string> protocols { "ept", "greyhound", "i3s" };
+const std::vector<std::string> protocols { "ept", "i3s" };
 
 std::string getDriverProtocol(std::string filename)
 {
@@ -83,8 +83,7 @@ std::string StageFactory::inferReaderDriver(const std::string& filename)
     // Strip off '.' and make lowercase.
     if (ext.length())
         ext = Utils::tolower(ext.substr(1));
-    PluginManager<Stage>& mgr = PluginManager<Stage>::get();
-    return mgr.extensions().defaultReader(ext);
+    return PluginManager<Stage>::extensions().defaultReader(ext);
 }
 
 
@@ -110,8 +109,7 @@ std::string StageFactory::inferWriterDriver(const std::string& filename)
     if (ext.length())
         ext = Utils::tolower(ext.substr(1));
 
-    PluginManager<Stage>& mgr = PluginManager<Stage>::get();
-    return mgr.extensions().defaultWriter(ext);
+    return PluginManager<Stage>::extensions().defaultWriter(ext);
 }
 
 

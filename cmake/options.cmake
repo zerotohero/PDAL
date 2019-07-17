@@ -22,11 +22,6 @@ option(BUILD_PLUGIN_I3S
 add_feature_info("I3S plugin" BUILD_PLUGIN_I3S
     "Read from a I3S server or from a SLPK file")
 
-option(BUILD_PLUGIN_GREYHOUND
-    "Choose if Greyhound support should be built" FALSE)
-add_feature_info("Greyhound plugin" BUILD_PLUGIN_GREYHOUND
-    "read points from a Greyhound server")
-
 option(BUILD_PLUGIN_ICEBRIDGE
     "Choose if Icebridge support should be built" FALSE)
 add_feature_info("Icebridge plugin" BUILD_PLUGIN_ICEBRIDGE
@@ -102,6 +97,11 @@ option(BUILD_PLUGIN_TILEDB
     "Choose if TileDB support should be built" FALSE)
 add_feature_info("TileDB plugin" BUILD_PLUGIN_TILEDB
     "read/write data from TileDB")
+
+option(BUILD_PLUGIN_E57
+        "Choose if e57 ui support should be built" FALSE)
+add_feature_info("E57 plugin" BUILD_PLUGIN_E57
+        "read/write data to and from e57 format")
 
 option(BUILD_TOOLS_NITFWRAP "Choose if nitfwrap tool should be built" FALSE)
 
