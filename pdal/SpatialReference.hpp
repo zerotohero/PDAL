@@ -39,8 +39,8 @@
 namespace pdal
 {
 
-class PDAL_DLL BOX3D;
-class PDAL_DLL MetadataNode;
+class PDAL_EXPORT BOX3D;
+class PDAL_EXPORT MetadataNode;
 
 /// A SpatialReference defines a model of the earth that is used to describe
 /// the location of points.
@@ -54,7 +54,7 @@ class PDAL_DLL MetadataNode;
 /// more than one spatial reference, PointTable::spatialReference() will
 /// return an empty spatial reference and PointTable::spatialReferenceUnique()
 /// will return false.
-class PDAL_DLL SpatialReference
+class PDAL_EXPORT SpatialReference
 {
 public:
     /**
@@ -163,15 +163,15 @@ public:
 private:
     std::string m_wkt;
     mutable std::string m_horizontalWkt;
-    friend PDAL_DLL std::ostream& operator<<(std::ostream& ostr,
+    friend PDAL_EXPORT std::ostream& operator<<(std::ostream& ostr,
         const SpatialReference& srs);
-    friend PDAL_DLL std::istream& operator>>(std::istream& istr,
+    friend PDAL_EXPORT std::istream& operator>>(std::istream& istr,
         SpatialReference& srs);
 };
 
-PDAL_DLL std::ostream& operator<<(std::ostream& ostr,
+PDAL_EXPORT std::ostream& operator<<(std::ostream& ostr,
     const SpatialReference& srs);
-PDAL_DLL std::istream& operator>>(std::istream& istr, SpatialReference& srs);
+PDAL_EXPORT std::istream& operator>>(std::istream& istr, SpatialReference& srs);
 
 } // namespace pdal
 

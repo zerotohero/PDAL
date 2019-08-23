@@ -42,7 +42,7 @@ namespace pdal
 {
 
 
-class PDAL_DLL SQLiteWriter : public DbWriter
+class PDAL_EXPORT SQLiteWriter : public DbWriter
 {
 public:
     SQLiteWriter();

@@ -44,7 +44,7 @@
 namespace pdal
 {
 
-class PDAL_DLL TileDBWriter : public Writer, public Streamable
+class PDAL_EXPORT TileDBWriter : public Writer, public Streamable
 {
 public:
     struct DimBuffer

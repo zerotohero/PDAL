@@ -42,7 +42,7 @@
 namespace pdal
 {
 
-class PDAL_DLL PointRef
+class PDAL_EXPORT PointRef
 {
 public:
     PointRef(PointContainer& container, PointId idx = 0) :

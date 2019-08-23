@@ -67,7 +67,7 @@ class Streamable;
   stage at the end of the pipeline.  PipelineManager can also be used to
   create and run a pipeline.
 */
-class PDAL_DLL Stage
+class PDAL_EXPORT Stage
 {
     FRIEND_TEST(OptionsTest, conditional);
     friend class StageWrapper;

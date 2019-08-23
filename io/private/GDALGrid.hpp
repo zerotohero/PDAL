@@ -61,7 +61,7 @@ public:
     };
 
     // Exported for testing.
-    PDAL_DLL GDALGrid(size_t width, size_t height,
+    PDAL_EXPORT GDALGrid(size_t width, size_t height,
         double edgeLength, double radius, int outputTypes, size_t windowSize);
 
     void expand(size_t width, size_t height, size_t xshift, size_t yshift);

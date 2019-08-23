@@ -43,7 +43,7 @@ using jace::proxy::mil::nga::giat::geowave::core::store::CloseableIterator;
 namespace pdal
 {
 
-    class PDAL_DLL GeoWaveReader : public Reader
+    class PDAL_EXPORT GeoWaveReader : public Reader
     {
     public:
         std::string getName() const;

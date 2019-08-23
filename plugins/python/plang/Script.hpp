@@ -43,7 +43,7 @@ namespace pdal
 namespace plang
 {
 
-class PDAL_DLL Script
+class PDAL_EXPORT Script
 {
 public:
     Script(const std::string& sourceCode, const std::string& moduleName,
@@ -71,7 +71,7 @@ private:
     Script& operator=(Script const& rhs); // nope
 };
 
-PDAL_DLL std::ostream& operator<<(std::ostream& os, Script const& d);
+PDAL_EXPORT std::ostream& operator<<(std::ostream& os, Script const& d);
 
 } // namespace plang
 } // namespace pdal

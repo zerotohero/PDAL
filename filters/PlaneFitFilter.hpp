@@ -44,7 +44,7 @@
 namespace pdal
 {
 
-class PDAL_DLL PlaneFitFilter : public Filter
+class PDAL_EXPORT PlaneFitFilter : public Filter
 {
 public:
     PlaneFitFilter()

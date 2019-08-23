@@ -100,7 +100,7 @@ public:
 };
 typedef std::shared_ptr<Block> BlockPtr;
 
-PDAL_DLL Connection connect(std::string connSpec);
-PDAL_DLL XMLSchema fetchSchema(Statement stmt, BlockPtr block);
+PDAL_EXPORT Connection connect(std::string connSpec);
+PDAL_EXPORT XMLSchema fetchSchema(Statement stmt, BlockPtr block);
 
 } // namespace pdal

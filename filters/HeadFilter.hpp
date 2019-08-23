@@ -40,7 +40,7 @@
 namespace pdal
 {
 
-class PDAL_DLL HeadFilter : public Filter
+class PDAL_EXPORT HeadFilter : public Filter
 {
 public:
     HeadFilter()

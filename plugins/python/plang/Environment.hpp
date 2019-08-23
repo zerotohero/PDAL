@@ -51,15 +51,15 @@ namespace pdal
 namespace plang
 {
 
-PDAL_DLL PyObject *fromMetadata(MetadataNode m);
-PDAL_DLL void addMetadata(PyObject *list, MetadataNode m);
+PDAL_EXPORT PyObject *fromMetadata(MetadataNode m);
+PDAL_EXPORT void addMetadata(PyObject *list, MetadataNode m);
 
-PDAL_DLL std::string getTraceback();
+PDAL_EXPORT std::string getTraceback();
 
 class Environment;
 typedef Environment *EnvironmentPtr;
 
-class PDAL_DLL Environment
+class PDAL_EXPORT Environment
 {
 public:
     Environment();

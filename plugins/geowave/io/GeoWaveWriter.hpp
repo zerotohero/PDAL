@@ -45,7 +45,7 @@ pdal::Writer* createGeoWaveWriter();
 namespace pdal
 {
 
-    class PDAL_DLL GeoWaveWriter : public Writer
+    class PDAL_EXPORT GeoWaveWriter : public Writer
     {
     public:
         std::string getName() const;

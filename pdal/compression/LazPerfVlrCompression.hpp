@@ -63,12 +63,12 @@ class LazPerfVlrCompressor
     typedef laszip::factory::record_schema Schema;
 
 public:
-    PDAL_DLL LazPerfVlrCompressor(std::ostream& stream, const Schema& schema,
+    PDAL_EXPORT LazPerfVlrCompressor(std::ostream& stream, const Schema& schema,
         uint32_t chunksize);
-    PDAL_DLL ~LazPerfVlrCompressor();
+    PDAL_EXPORT ~LazPerfVlrCompressor();
 
-    PDAL_DLL void compress(const char *inbuf);
-    PDAL_DLL void done();
+    PDAL_EXPORT void compress(const char *inbuf);
+    PDAL_EXPORT void done();
 
 private:
     std::unique_ptr<LazPerfVlrCompressorImpl> m_impl;
@@ -80,12 +80,12 @@ class LazPerfVlrDecompressorImpl;
 class LazPerfVlrDecompressor
 {
 public:
-    PDAL_DLL LazPerfVlrDecompressor(std::istream& stream, const char *vlrData,
+    PDAL_EXPORT LazPerfVlrDecompressor(std::istream& stream, const char *vlrData,
         std::streamoff pointOffset);
-    PDAL_DLL ~LazPerfVlrDecompressor();
+    PDAL_EXPORT ~LazPerfVlrDecompressor();
 
-    PDAL_DLL size_t pointSize() const;
-    PDAL_DLL void decompress(char *outbuf);
+    PDAL_EXPORT size_t pointSize() const;
+    PDAL_EXPORT void decompress(char *outbuf);
 
 private:
     std::unique_ptr<LazPerfVlrDecompressorImpl> m_impl;

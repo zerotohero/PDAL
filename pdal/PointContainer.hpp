@@ -41,7 +41,7 @@
 namespace pdal
 {
 
-class PDAL_DLL PointContainer
+class PDAL_EXPORT PointContainer
 {
     friend class PointTable;
     friend class PointView;

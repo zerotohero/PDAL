@@ -44,7 +44,7 @@
 namespace pdal
 {
 
-class PDAL_DLL Pool
+class PDAL_EXPORT Pool
 {
 public:
     // After numThreads tasks are actively running, and queueSize tasks have

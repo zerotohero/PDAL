@@ -44,7 +44,7 @@ namespace pdal
 
 namespace gdal { class SpatialRef; }
 
-class PDAL_DLL TIndexReader : public Reader
+class PDAL_EXPORT TIndexReader : public Reader
 {
     struct FileInfo
     {

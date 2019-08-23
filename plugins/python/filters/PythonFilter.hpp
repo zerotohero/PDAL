@@ -43,7 +43,7 @@
 namespace pdal
 {
 
-class PDAL_DLL PythonFilter : public Filter
+class PDAL_EXPORT PythonFilter : public Filter
 {
 public:
     PythonFilter();

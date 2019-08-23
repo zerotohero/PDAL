@@ -57,7 +57,7 @@ namespace FileUtils
       \param asBinary  Read as binary file (don't convert /r/n to /n)
       \return  Pointer to opened stream.
     */
-    PDAL_DLL std::istream* openFile(std::string const& filename,
+    PDAL_EXPORT std::istream* openFile(std::string const& filename,
         bool asBinary=true);
 
     /**
@@ -67,7 +67,7 @@ namespace FileUtils
       \param asBinary  Write as binary file (don't convert /n to /r/n)
       \return  Point to opened stream.
     */
-    PDAL_DLL std::ostream* createFile(std::string const& filename,
+    PDAL_EXPORT std::ostream* createFile(std::string const& filename,
         bool asBinary=true);
 
     /**
@@ -76,7 +76,7 @@ namespace FileUtils
       \param dirname  Name of directory.
       \return  Whether a directory exists.
     */
-    PDAL_DLL bool directoryExists(const std::string& dirname);
+    PDAL_EXPORT bool directoryExists(const std::string& dirname);
 
     /**
       Create a directory.
@@ -84,7 +84,7 @@ namespace FileUtils
       \param dirname  Directory name.
       \return  Whether the directory was created.
     */
-    PDAL_DLL bool createDirectory(const std::string& dirname);
+    PDAL_EXPORT bool createDirectory(const std::string& dirname);
 
     /**
       Create all directories in the provided path.
@@ -92,14 +92,14 @@ namespace FileUtils
       \param dirname  Path name.
       \return  \false on failure
     */
-    PDAL_DLL bool createDirectories(const std::string& path);
+    PDAL_EXPORT bool createDirectories(const std::string& path);
 
     /**
       Delete a directory and its contents.
 
       \param dirname  Directory name.
     */
-    PDAL_DLL void deleteDirectory(const std::string& dirname);
+    PDAL_EXPORT void deleteDirectory(const std::string& dirname);
 
     /**
       List the contents of a directory.
@@ -107,21 +107,21 @@ namespace FileUtils
       \param dirname  Name of directory to list.
       \return  List of entries in the directory.
     */
-    PDAL_DLL std::vector<std::string> directoryList(const std::string& dirname);
+    PDAL_EXPORT std::vector<std::string> directoryList(const std::string& dirname);
 
     /**
       Close a file created with createFile.
 
       \param ofs  Pointer to stream to close.
     */
-    PDAL_DLL void closeFile(std::ostream* ofs);
+    PDAL_EXPORT void closeFile(std::ostream* ofs);
 
     /**
       Close a file created with openFile.
 
       \param ifs  Pointer to stream to close.
     */
-    PDAL_DLL void closeFile(std::istream* ifs);
+    PDAL_EXPORT void closeFile(std::istream* ifs);
 
     /**
       Delete a file.
@@ -129,7 +129,7 @@ namespace FileUtils
       \param filename  Name of file to delete.
       \return  \c true if successful, \c false otherwise
     */
-    PDAL_DLL bool deleteFile(const std::string& filename);
+    PDAL_EXPORT bool deleteFile(const std::string& filename);
 
     /**
       Rename a file.
@@ -137,7 +137,7 @@ namespace FileUtils
       \param dest  Desired filename.
       \param src   Source filename.
     */
-    PDAL_DLL void renameFile(const std::string& dest, const std::string& src);
+    PDAL_EXPORT void renameFile(const std::string& dest, const std::string& src);
 
     /**
       Determine if a file exists.
@@ -145,7 +145,7 @@ namespace FileUtils
       \param  Filename.
       \return  Whether the file exists.
     */
-    PDAL_DLL bool fileExists(const std::string& filename);
+    PDAL_EXPORT bool fileExists(const std::string& filename);
 
     /**
       Get the size of a file.
@@ -153,7 +153,7 @@ namespace FileUtils
       \param filename  Filename.
       \return  Size of file.
     */
-    PDAL_DLL uintmax_t fileSize(const std::string& filename);
+    PDAL_EXPORT uintmax_t fileSize(const std::string& filename);
 
     /**
       Read a file into a string.
@@ -161,14 +161,14 @@ namespace FileUtils
       \param filename  Filename.
       \return  File contents as a string
     */
-    PDAL_DLL std::string readFileIntoString(const std::string& filename);
+    PDAL_EXPORT std::string readFileIntoString(const std::string& filename);
 
     /**
       Get the current working directory with trailing separator.
 
       \return  The current working directory.
     */
-    PDAL_DLL std::string getcwd();
+    PDAL_EXPORT std::string getcwd();
 
     /**
       Return the file component of the given path,
@@ -177,7 +177,7 @@ namespace FileUtils
       \param path  Path from which to extract file component.
       \return  File part of path.
     */
-    PDAL_DLL std::string getFilename(const std::string& path);
+    PDAL_EXPORT std::string getFilename(const std::string& path);
 
     /**
       Return the directory component of the given path,
@@ -186,7 +186,7 @@ namespace FileUtils
       \param path  Path from which to extract directory component.
       \return  Directory part of path.
     */
-    PDAL_DLL std::string getDirectory(const std::string& path);
+    PDAL_EXPORT std::string getDirectory(const std::string& path);
 
     /**
       Determine if the path is an absolute path.
@@ -194,7 +194,7 @@ namespace FileUtils
       \param path  Path to test.
       \return  Whether the path is absolute.
     */
-    PDAL_DLL bool isAbsolutePath(const std::string& path);
+    PDAL_EXPORT bool isAbsolutePath(const std::string& path);
 
     /**
       Determine if path is a directory.
@@ -202,7 +202,7 @@ namespace FileUtils
       \param path  Directory to check.
       \return  Whether the path represents a directory.
     */
-    PDAL_DLL bool isDirectory(const std::string& path);
+    PDAL_EXPORT bool isDirectory(const std::string& path);
 
     /**
       If the filename is an absolute path, just return it otherwise,
@@ -211,7 +211,7 @@ namespace FileUtils
       \param filename  Name of file to convert to absolute path.
       \return  Absolute version of provided filename.
     */
-    PDAL_DLL std::string toAbsolutePath(const std::string& filename);
+    PDAL_EXPORT std::string toAbsolutePath(const std::string& filename);
 
     /**
       If the filename is an absolute path, just return it otherwise,
@@ -221,7 +221,7 @@ namespace FileUtils
       \param base  Base name to use.
       \return  Absolute version of provided filename relative to base.
     */
-    PDAL_DLL std::string toAbsolutePath(const std::string& filename,
+    PDAL_EXPORT std::string toAbsolutePath(const std::string& filename,
         const std::string base);
     
     /**
@@ -231,7 +231,7 @@ namespace FileUtils
       \param createTime  Pointer to creation time structure.
       \param modTime  Pointer to modification time structure.
     */
-    PDAL_DLL void fileTimes(const std::string& filename, struct tm *createTime,
+    PDAL_EXPORT void fileTimes(const std::string& filename, struct tm *createTime,
         struct tm *modTime);
 
     /**
@@ -240,7 +240,7 @@ namespace FileUtils
       \param path  File path from which to extract extension.
       \return  Extension of filename.
     */
-    PDAL_DLL std::string extension(const std::string& path);
+    PDAL_EXPORT std::string extension(const std::string& path);
 
     /**
       Return the filename stripped of the extension.  . and .. are returned
@@ -249,7 +249,7 @@ namespace FileUtils
       \param path  File path from which to extract file stem.
       \return  Stem of filename.
     */
-    PDAL_DLL std::string stem(const std::string& path);
+    PDAL_EXPORT std::string stem(const std::string& path);
 
     /**
       Expand a filespec to a list of files.
@@ -257,7 +257,7 @@ namespace FileUtils
       \param filespec  File specification to expand.
       \return  List of files that correspond to provided file specification.
     */
-    PDAL_DLL std::vector<std::string> glob(std::string filespec);
+    PDAL_EXPORT std::vector<std::string> glob(std::string filespec);
 }
 
 } // namespace pdal

@@ -64,15 +64,15 @@ namespace gdal
 template<typename ITER>
 using ITER_VAL = typename std::iterator_traits<ITER>::value_type;
 
-PDAL_DLL void registerDrivers();
-PDAL_DLL void unregisterDrivers();
-PDAL_DLL bool reprojectBounds(BOX3D& box, const std::string& srcSrs,
+PDAL_EXPORT void registerDrivers();
+PDAL_EXPORT void unregisterDrivers();
+PDAL_EXPORT bool reprojectBounds(BOX3D& box, const std::string& srcSrs,
     const std::string& dstSrs);
-PDAL_DLL bool reprojectBounds(BOX2D& box, const std::string& srcSrs,
+PDAL_EXPORT bool reprojectBounds(BOX2D& box, const std::string& srcSrs,
     const std::string& dstSrs);
-PDAL_DLL bool reproject(double& x, double& y, double& z,
+PDAL_EXPORT bool reproject(double& x, double& y, double& z,
     const std::string& srcSrs, const std::string& dstSrs);
-PDAL_DLL std::string lastError();
+PDAL_EXPORT std::string lastError();
 
 typedef std::shared_ptr<void> RefPtr;
 
@@ -216,7 +216,7 @@ private:
 //
 // We lock the log/debug so that it doesn't
 // get changed while another thread is using or setting.
-class PDAL_DLL ErrorHandler
+class PDAL_EXPORT ErrorHandler
 {
 public:
     /**
@@ -545,7 +545,7 @@ private:
 };
 
 
-class PDAL_DLL Raster
+class PDAL_EXPORT Raster
 {
 public:
     /**

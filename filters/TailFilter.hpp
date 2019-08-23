@@ -40,7 +40,7 @@
 namespace pdal
 {
 
-class PDAL_DLL TailFilter : public Filter
+class PDAL_EXPORT TailFilter : public Filter
 {
 public:
     TailFilter()

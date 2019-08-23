@@ -46,7 +46,7 @@ namespace pdal
 
 class Triangle;
 
-class PDAL_DLL FbxWriter : public Writer
+class PDAL_EXPORT FbxWriter : public Writer
 {
 public:
     std::string getName() const;

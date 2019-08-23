@@ -56,7 +56,7 @@ class HexGrid
 {
     friend class HexIter;
 public:
-    PDAL_DLL HexGrid(int dense_limit);
+    PDAL_EXPORT HexGrid(int dense_limit);
     HexGrid(double height, int dense_limit) : m_dense_limit(dense_limit)
         { initialize(height); }
 
@@ -67,10 +67,10 @@ public:
     }
 
     // Exported for testing.
-    PDAL_DLL void findShapes();
-    PDAL_DLL void findParentPaths();
-    PDAL_DLL void toWKT(std::ostream&) const;
-    PDAL_DLL void addDenseHexagon(int x, int y);
+    PDAL_EXPORT void findShapes();
+    PDAL_EXPORT void findParentPaths();
+    PDAL_EXPORT void toWKT(std::ostream&) const;
+    PDAL_EXPORT void addDenseHexagon(int x, int y);
 
     bool dense(Hexagon *h);
     void addPoint(double x, double y)

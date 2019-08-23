@@ -67,7 +67,7 @@ class BOX3D;
 typedef std::shared_ptr<PointView> PointViewPtr;
 typedef std::set<PointViewPtr, PointViewLess> PointViewSet;
 
-class PDAL_DLL PointView : public PointContainer
+class PDAL_EXPORT PointView : public PointContainer
 {
     FRIEND_TEST(VoxelTest, center);
     friend class Stage;
@@ -601,6 +601,6 @@ inline PointId PointView::getTemp(PointId id)
     return newid;
 }
 
-PDAL_DLL std::ostream& operator<<(std::ostream& ostr, const PointView&);
+PDAL_EXPORT std::ostream& operator<<(std::ostream& ostr, const PointView&);
 
 } // namespace pdal

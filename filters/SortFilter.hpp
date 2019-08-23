@@ -51,7 +51,7 @@ std::istream& operator >> (std::istream& in, SortOrder& order);
 std::ostream& operator << (std::ostream& in, const SortOrder& order);
 
 
-class PDAL_DLL SortFilter : public Filter
+class PDAL_EXPORT SortFilter : public Filter
 {
 public:
     SortFilter()

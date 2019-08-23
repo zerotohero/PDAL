@@ -91,7 +91,7 @@ inline bool operator < (const uuid& u1, const uuid& u2)
     return false;
 }
 
-class PDAL_DLL Uuid
+class PDAL_EXPORT Uuid
 {
     friend inline bool operator < (const Uuid& u1, const Uuid& u2);
 public:

@@ -49,7 +49,7 @@ namespace pdal
 
 /// pdal::Log is a logging object that is provided by pdal::Stage to
 /// facilitate logging operations.
-class PDAL_DLL Log
+class PDAL_EXPORT Log
 {
 public:
 

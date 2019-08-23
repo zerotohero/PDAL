@@ -61,7 +61,7 @@ class LeExtractor;
 class PointDimensions;
 class LazPerfVlrDecompressor;
 
-class PDAL_DLL LasReader : public Reader, public Streamable
+class PDAL_EXPORT LasReader : public Reader, public Streamable
 {
 protected:
     class LasStreamIf

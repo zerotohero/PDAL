@@ -40,7 +40,7 @@
 namespace pdal
 {
 
-class PDAL_DLL FlexWriter : public Writer
+class PDAL_EXPORT FlexWriter : public Writer
 {
 protected:
     FlexWriter() : m_filenum(1)

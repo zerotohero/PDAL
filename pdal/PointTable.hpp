@@ -49,7 +49,7 @@ namespace pdal
 
 class ArtifactManager;
 
-class PDAL_DLL BasePointTable : public PointContainer
+class PDAL_EXPORT BasePointTable : public PointContainer
 {
     FRIEND_TEST(PointTable, srs);
     friend class PointView;
@@ -111,7 +111,7 @@ protected:
 typedef BasePointTable& PointTableRef;
 typedef BasePointTable const & ConstPointTableRef;
 
-class PDAL_DLL SimplePointTable : public BasePointTable
+class PDAL_EXPORT SimplePointTable : public BasePointTable
 {
 
 protected:
@@ -141,7 +141,7 @@ private:
 
 // This provides a context for processing a set of points and allows the library
 // to be used to process multiple point sets simultaneously.
-class PDAL_DLL PointTable : public SimplePointTable
+class PDAL_EXPORT PointTable : public SimplePointTable
 {
 private:
     // Point storage.
@@ -166,7 +166,7 @@ private:
     PointLayout m_layout;
 };
 
-class PDAL_DLL ContiguousPointTable : public SimplePointTable
+class PDAL_EXPORT ContiguousPointTable : public SimplePointTable
 {
 private:
     std::vector<char> m_buf;
@@ -193,7 +193,7 @@ private:
 /// sufficient size to contain a point's data.  The minimum size required
 /// is constant and can be determined by calling pointsToBytes(1) in the
 /// finalize() method.
-class PDAL_DLL StreamPointTable : public SimplePointTable
+class PDAL_EXPORT StreamPointTable : public SimplePointTable
 {
 protected:
     StreamPointTable(PointLayout& layout, point_count_t capacity)
@@ -251,7 +251,7 @@ private:
     std::vector<bool> m_skips;
 };
 
-class PDAL_DLL FixedPointTable : public StreamPointTable
+class PDAL_EXPORT FixedPointTable : public StreamPointTable
 {
 public:
     FixedPointTable(point_count_t capacity)

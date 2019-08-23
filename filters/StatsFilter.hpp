@@ -42,7 +42,7 @@ namespace pdal
 namespace stats
 {
 
-class PDAL_DLL Summary
+class PDAL_EXPORT Summary
 {
 public:
     enum EnumType
@@ -162,7 +162,7 @@ private:
 
 // This is just a pass-through filter, which collects some stats about
 // the points that are fed through it
-class PDAL_DLL StatsFilter : public Filter, public Streamable
+class PDAL_EXPORT StatsFilter : public Filter, public Streamable
 {
 public:
     StatsFilter()

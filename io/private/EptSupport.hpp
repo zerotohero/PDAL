@@ -87,7 +87,7 @@ inline BOX3D toBox3d(const NL::json& b)
             b[3].get<double>(), b[4].get<double>(), b[5].get<double>());
 }
 
-class PDAL_DLL Key
+class PDAL_EXPORT Key
 {
     // An EPT key representation (see https://git.io/fAiBh).  A depth/X/Y/Z key
     // representing a data node, as well as the bounds of the contained data.
@@ -189,7 +189,7 @@ inline bool operator<(const Key& a, const Key& b)
 
 using EptHierarchy = std::map<Key, uint64_t>;
 
-class PDAL_DLL Addon
+class PDAL_EXPORT Addon
 {
 public:
     Addon(const PointLayout& layout, const arbiter::Endpoint& ep,
@@ -224,7 +224,7 @@ private:
     EptHierarchy m_hierarchy;
 };
 
-class PDAL_DLL EptInfo
+class PDAL_EXPORT EptInfo
 {
 public:
     enum class DataType
@@ -285,7 +285,7 @@ class FixedPointLayout : public PointLayout
     // coming from a remote source, then the dimensions must retain their order.
     // FixedPointLayout retains the order of dimensions as they are registered.
 protected:
-    PDAL_DLL virtual bool update(
+    PDAL_EXPORT virtual bool update(
             pdal::Dimension::Detail dimDetail,
             const std::string& name) override
     {
@@ -308,7 +308,7 @@ protected:
     }
 };
 
-class PDAL_DLL ShallowPointTable : public BasePointTable
+class PDAL_EXPORT ShallowPointTable : public BasePointTable
 {
     // PointTable semantics around a raw buffer of data matching the specified
     // layout.  Intended for accessing data from a remote source.
@@ -366,7 +366,7 @@ protected:
     std::size_t m_size;
 };
 
-class PDAL_DLL Pool
+class PDAL_EXPORT Pool
 {
 public:
     // After numThreads tasks are actively running, and queueSize tasks have

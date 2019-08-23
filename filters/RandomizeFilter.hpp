@@ -40,7 +40,7 @@
 namespace pdal
 {
 
-class PDAL_DLL RandomizeFilter : public Filter
+class PDAL_EXPORT RandomizeFilter : public Filter
 {
 public:
     RandomizeFilter()

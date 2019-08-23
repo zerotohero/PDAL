@@ -43,8 +43,8 @@ PDAL_C_START
 
 // These functions are available from GDAL, but they
 // aren't exported.
-char PDAL_DLL * GTIFGetOGISDefn(GTIF*, GTIFDefn*);
-int PDAL_DLL GTIFSetFromOGISDefn(GTIF*, const char*);
+char PDAL_EXPORT * GTIFGetOGISDefn(GTIF*, GTIFDefn*);
+int PDAL_EXPORT GTIFSetFromOGISDefn(GTIF*, const char*);
 void VSIFree(void *data);
 
 PDAL_C_END

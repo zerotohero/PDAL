@@ -39,7 +39,7 @@
 namespace pdal
 {
 
-class PDAL_DLL NullWriter : public Writer
+class PDAL_EXPORT NullWriter : public Writer
 {
 public:
     std::string getName() const;

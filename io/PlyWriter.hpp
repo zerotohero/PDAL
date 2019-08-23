@@ -40,7 +40,7 @@ namespace pdal
 
 class Triangle;
 
-class PDAL_DLL PlyWriter : public Writer
+class PDAL_EXPORT PlyWriter : public Writer
 {
 public:
     enum class Format

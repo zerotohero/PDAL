@@ -57,7 +57,7 @@ std::string GetDefaultSoftwareId();
 class LasSummaryData;
 class Scaling;
 
-class PDAL_DLL LasHeader
+class PDAL_EXPORT LasHeader
 {
 public:
     struct error : public std::runtime_error
@@ -389,7 +389,7 @@ public:
     const VlrList& vlrs() const
         { return m_vlrs; }
 
-    PDAL_DLL friend ILeStream& operator>>(ILeStream&, LasHeader& h);
+    PDAL_EXPORT friend ILeStream& operator>>(ILeStream&, LasHeader& h);
     friend OLeStream& operator<<(OLeStream&, const LasHeader& h);
     friend std::ostream& operator<<(std::ostream& ostr, const LasHeader& h);
 

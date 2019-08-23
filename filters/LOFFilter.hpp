@@ -45,7 +45,7 @@ class PointLayout;
 class PointView;
 class ProgramArgs;
 
-class PDAL_DLL LOFFilter : public Filter
+class PDAL_EXPORT LOFFilter : public Filter
 {
 public:
     LOFFilter() : Filter()

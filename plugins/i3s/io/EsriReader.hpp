@@ -77,7 +77,7 @@ std::map<std::string, pdal::Dimension::Type> const dimTypes
 
 class SrsTransform;
 
-class PDAL_DLL EsriReader : public Reader
+class PDAL_EXPORT EsriReader : public Reader
 {
 public:
     EsriReader();

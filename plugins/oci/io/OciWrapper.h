@@ -293,7 +293,7 @@ class OWStatement;
 //  OWConnection
 //  ---------------------------------------------------------------------------
 
-class PDAL_DLL OWConnection
+class PDAL_EXPORT OWConnection
 {
     friend class OWStatement;
 
@@ -381,7 +381,7 @@ public:
 /*                           OWStatement                                   */
 /***************************************************************************/
 
-class PDAL_DLL OWStatement
+class PDAL_EXPORT OWStatement
 {
 
 public:

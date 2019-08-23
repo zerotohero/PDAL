@@ -54,7 +54,7 @@ namespace pdal
 {
 
 template<int DIM>
-class PDAL_DLL KDIndex
+class PDAL_EXPORT KDIndex
 {
 protected:
     KDIndex(const PointView& buf) : m_buf(buf)
@@ -91,7 +91,7 @@ private:
     KDIndex& operator=(KDIndex&);
 };
 
-class PDAL_DLL KD2Index : public KDIndex<2>
+class PDAL_EXPORT KD2Index : public KDIndex<2>
 {
 public:
     KD2Index(const PointView& buf) : KDIndex<2>(buf)
@@ -214,7 +214,7 @@ public:
     }
 };
 
-class PDAL_DLL KD3Index : public KDIndex<3>
+class PDAL_EXPORT KD3Index : public KDIndex<3>
 {
 public:
     KD3Index(const PointView& buf) : KDIndex<3>(buf)

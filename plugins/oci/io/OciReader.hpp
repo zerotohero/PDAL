@@ -44,7 +44,7 @@
 namespace pdal
 {
 
-class PDAL_DLL OciReader : public DbReader
+class PDAL_EXPORT OciReader : public DbReader
 {
 public:
     OciReader()

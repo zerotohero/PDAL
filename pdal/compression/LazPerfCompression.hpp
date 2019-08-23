@@ -45,11 +45,11 @@ class LazPerfCompressorImpl;
 class LazPerfCompressor : public Compressor
 {
 public:
-    PDAL_DLL LazPerfCompressor(BlockCb cb, const DimTypeList& dims);
-    PDAL_DLL ~LazPerfCompressor();
+    PDAL_EXPORT LazPerfCompressor(BlockCb cb, const DimTypeList& dims);
+    PDAL_EXPORT ~LazPerfCompressor();
 
-    PDAL_DLL void compress(const char *buf, size_t bufsize);
-    PDAL_DLL void done();
+    PDAL_EXPORT void compress(const char *buf, size_t bufsize);
+    PDAL_EXPORT void done();
 
 private:
     std::unique_ptr<LazPerfCompressorImpl> m_impl;
@@ -64,11 +64,11 @@ class LazPerfDecompressorImpl;
 class LazPerfDecompressor : public Decompressor
 {
 public:
-    PDAL_DLL LazPerfDecompressor(BlockCb cb, const DimTypeList& dims,
+    PDAL_EXPORT LazPerfDecompressor(BlockCb cb, const DimTypeList& dims,
         size_t numPoints);
-    PDAL_DLL ~LazPerfDecompressor();
+    PDAL_EXPORT ~LazPerfDecompressor();
 
-    PDAL_DLL void decompress(const char *buf, size_t bufsize);
+    PDAL_EXPORT void decompress(const char *buf, size_t bufsize);
 
 private:
     std::unique_ptr<LazPerfDecompressorImpl> m_impl;

@@ -47,7 +47,7 @@ class Options;
 class PointLayout;
 class PointView;
 
-class PDAL_DLL HAGFilter : public Filter
+class PDAL_EXPORT HAGFilter : public Filter
 {
 public:
     HAGFilter() : Filter()

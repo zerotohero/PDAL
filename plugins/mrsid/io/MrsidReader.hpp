@@ -47,7 +47,7 @@ namespace pdal
 
 // The MrSIDReader wraps LT's PointSource abstraction
 //
-class PDAL_DLL MrsidReader : public pdal::Reader
+class PDAL_EXPORT MrsidReader : public pdal::Reader
 {
 
 public:

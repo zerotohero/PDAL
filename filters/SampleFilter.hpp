@@ -43,7 +43,7 @@ namespace pdal
 
 class Options;
 
-class PDAL_DLL SampleFilter : public pdal::Filter
+class PDAL_EXPORT SampleFilter : public pdal::Filter
 {
 public:
     SampleFilter() : Filter()

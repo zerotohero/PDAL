@@ -46,7 +46,7 @@
 namespace pdal
 {
 
-class PDAL_DLL NumpyReader : public Reader, public Streamable
+class PDAL_EXPORT NumpyReader : public Reader, public Streamable
 {
     enum class Order
     {

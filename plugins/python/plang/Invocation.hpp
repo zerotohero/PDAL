@@ -48,7 +48,7 @@ namespace plang
 {
 
 
-class PDAL_DLL Invocation
+class PDAL_EXPORT Invocation
 {
 public:
     Invocation(const Script&);

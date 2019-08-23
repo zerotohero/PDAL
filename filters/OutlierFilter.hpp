@@ -51,7 +51,7 @@ struct Indices
     std::vector<PointId> outliers;
 };
 
-class PDAL_DLL OutlierFilter : public pdal::Filter
+class PDAL_EXPORT OutlierFilter : public pdal::Filter
 {
 public:
     OutlierFilter() : Filter()

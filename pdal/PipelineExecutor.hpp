@@ -51,7 +51,7 @@ namespace pdal
   It is constructed with JSON defining a pipeline.
 */
 
-class PDAL_DLL PipelineExecutor {
+class PDAL_EXPORT PipelineExecutor {
 public:
 
     /**

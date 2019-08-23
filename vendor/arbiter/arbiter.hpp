@@ -3131,8 +3131,6 @@ inline std::string decompress(const char* data, std::size_t size)
 #if defined(ARBITER_WINDOWS)
 #if defined(ARBITER_DLL_EXPORT)
 #   define ARBITER_DLL   __declspec(dllexport)
-#elif defined(PDAL_DLL_IMPORT)
-#   define ARBITER_DLL   __declspec(dllimport)
 #else
 #   define ARBITER_DLL
 #endif

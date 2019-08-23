@@ -54,7 +54,7 @@ class EptInfo;
 class Key;
 class Pool;
 
-class PDAL_DLL EptAddonWriter : public Writer
+class PDAL_EXPORT EptAddonWriter : public Writer
 {
 public:
     EptAddonWriter();

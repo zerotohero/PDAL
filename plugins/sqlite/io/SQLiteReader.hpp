@@ -45,7 +45,7 @@
 namespace pdal
 {
 
-class PDAL_DLL SQLiteReader : public DbReader
+class PDAL_EXPORT SQLiteReader : public DbReader
 {
 public:
     SQLiteReader()

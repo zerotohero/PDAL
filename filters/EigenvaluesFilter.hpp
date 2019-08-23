@@ -47,7 +47,7 @@ class Options;
 class PointLayout;
 class PointView;
 
-class PDAL_DLL EigenvaluesFilter : public Filter
+class PDAL_EXPORT EigenvaluesFilter : public Filter
 {
 public:
     EigenvaluesFilter() : Filter()

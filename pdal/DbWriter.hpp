@@ -47,7 +47,7 @@ class SQLiteWriter;
 class PgWriter;
 class OciWriter;
 
-class PDAL_DLL DbWriter : public Writer
+class PDAL_EXPORT DbWriter : public Writer
 {
 protected:
     DbWriter()

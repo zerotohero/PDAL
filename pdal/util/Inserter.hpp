@@ -39,7 +39,7 @@
 namespace pdal
 {
 
-class PDAL_DLL Inserter
+class PDAL_EXPORT Inserter
 {
 public:
     Inserter(unsigned char *buf, std::size_t size) : m_pbase((char *)buf),
@@ -98,7 +98,7 @@ public:
 
 /// Stream wrapper for output of binary data that converts from host ordering
 /// to little endian format
-class PDAL_DLL LeInserter : public Inserter
+class PDAL_EXPORT LeInserter : public Inserter
 {
 public:
     LeInserter(char *buf, std::size_t size) : Inserter(buf, size)
@@ -200,7 +200,7 @@ public:
 
 /// Stream wrapper for output of binary data that converts from host ordering
 /// to big endian format
-class PDAL_DLL BeInserter : public Inserter
+class PDAL_EXPORT BeInserter : public Inserter
 {
 public:
     BeInserter(char *buf, std::size_t size) : Inserter(buf, size)

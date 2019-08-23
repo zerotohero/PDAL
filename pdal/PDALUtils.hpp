@@ -261,16 +261,16 @@ inline void writeProgress(int fd, const std::string& type,
 #endif
 }
 
-std::string PDAL_DLL toJSON(const MetadataNode& m);
-void PDAL_DLL toJSON(const MetadataNode& m, std::ostream& o);
-std::istream PDAL_DLL *openFile(const std::string& path, bool asBinary = true);
-std::ostream PDAL_DLL *createFile(const std::string& path,
+std::string PDAL_EXPORT toJSON(const MetadataNode& m);
+void PDAL_EXPORT toJSON(const MetadataNode& m, std::ostream& o);
+std::istream PDAL_EXPORT *openFile(const std::string& path, bool asBinary = true);
+std::ostream PDAL_EXPORT *createFile(const std::string& path,
     bool asBinary = true);
-void PDAL_DLL closeFile(std::istream *in);
-void PDAL_DLL closeFile(std::ostream *out);
-bool PDAL_DLL fileExists(const std::string& path);
-std::vector<std::string> PDAL_DLL maybeGlob(const std::string& path);
-double PDAL_DLL computeHausdorff(PointViewPtr srcView, PointViewPtr candView);
+void PDAL_EXPORT closeFile(std::istream *in);
+void PDAL_EXPORT closeFile(std::ostream *out);
+bool PDAL_EXPORT fileExists(const std::string& path);
+std::vector<std::string> PDAL_EXPORT maybeGlob(const std::string& path);
+double PDAL_EXPORT computeHausdorff(PointViewPtr srcView, PointViewPtr candView);
 
 } // namespace Utils
 } // namespace pdal

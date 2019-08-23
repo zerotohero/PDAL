@@ -63,20 +63,20 @@ namespace Segmentation
   \param[in] tolerance the tolerance for adding points to a cluster.
   \returns a vector of clusters (themselves vectors of PointIds).
 */
-PDAL_DLL std::vector<std::vector<PointId>> extractClusters(PointView& view,
+PDAL_EXPORT std::vector<std::vector<PointId>> extractClusters(PointView& view,
                                                            uint64_t min_points,
                                                            uint64_t max_points,
                                                            double tolerance);
 
-PDAL_DLL void ignoreDimRange(DimRange dr, PointViewPtr input, PointViewPtr keep,
+PDAL_EXPORT void ignoreDimRange(DimRange dr, PointViewPtr input, PointViewPtr keep,
                              PointViewPtr ignore);
-PDAL_DLL void ignoreDimRanges(std::vector<DimRange>& ranges,
+PDAL_EXPORT void ignoreDimRanges(std::vector<DimRange>& ranges,
     PointViewPtr input, PointViewPtr keep, PointViewPtr ignore);
 
-PDAL_DLL void segmentLastReturns(PointViewPtr input, PointViewPtr last,
+PDAL_EXPORT void segmentLastReturns(PointViewPtr input, PointViewPtr last,
                                  PointViewPtr other);
 
-PDAL_DLL void segmentReturns(PointViewPtr input, PointViewPtr first,
+PDAL_EXPORT void segmentReturns(PointViewPtr input, PointViewPtr first,
                              PointViewPtr second, StringList returns);
 
 } // namespace Segmentation

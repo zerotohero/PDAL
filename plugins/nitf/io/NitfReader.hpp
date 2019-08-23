@@ -45,7 +45,7 @@ namespace pdal
 {
 
 
-class PDAL_DLL NitfReader : public LasReader
+class PDAL_EXPORT NitfReader : public LasReader
 {
 typedef pdalboost::iostreams::restriction<std::istream> RDevice;
 typedef pdalboost::iostreams::stream<RDevice> RStream;

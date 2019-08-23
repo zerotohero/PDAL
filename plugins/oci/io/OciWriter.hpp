@@ -43,7 +43,7 @@ pdal::Writer* createOciWriter();
 namespace pdal
 {
 
-class PDAL_DLL OciWriter : public DbWriter
+class PDAL_EXPORT OciWriter : public DbWriter
 {
 public:
     OciWriter();

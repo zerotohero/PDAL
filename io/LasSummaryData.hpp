@@ -44,7 +44,7 @@
 namespace pdal
 {
 
-class PDAL_DLL LasSummaryData
+class PDAL_EXPORT LasSummaryData
 {
 public:
     struct error : public std::runtime_error
@@ -77,6 +77,6 @@ private:
     LasSummaryData(const LasSummaryData&); // not implemented
 };
 
-PDAL_DLL std::ostream& operator<<(std::ostream& ostr, const LasSummaryData&);
+PDAL_EXPORT std::ostream& operator<<(std::ostream& ostr, const LasSummaryData&);
 
 } // namespace pdal

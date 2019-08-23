@@ -47,7 +47,7 @@ class Options;
 class PointLayout;
 class PointView;
 
-class PDAL_DLL ApproximateCoplanarFilter : public Filter
+class PDAL_EXPORT ApproximateCoplanarFilter : public Filter
 {
 public:
     ApproximateCoplanarFilter() : Filter()

@@ -48,7 +48,7 @@ class PointLayout;
 class PointView;
 struct NormalArgs;
 
-class PDAL_DLL NormalFilter : public Filter
+class PDAL_EXPORT NormalFilter : public Filter
 {
 public:
     NormalFilter();
