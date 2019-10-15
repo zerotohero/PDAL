@@ -16,6 +16,7 @@ include(${ROOT_DIR}/cmake/common.cmake NO_POLICY_SCOPE)
 #------------------------------------------------------------------------------
 
 set(CMAKE_COLOR_MAKEFILE ON)
+set(PDAL_LIB_TYPE STATIC)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 include(FeatureSummary)
 
@@ -366,17 +367,17 @@ include (${PDAL_CMAKE_DIR}/cpack.cmake)
 
 add_custom_target(dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)
 
-export(
-    TARGETS
-        ${PDAL_BASE_LIB_NAME} ${PDAL_UTIL_LIB_NAME}
-    FILE
-        "${PDAL_BINARY_DIR}/PDALTargets.cmake")
+#export(
+#    TARGETS
+#        ${PDAL_BASE_LIB_NAME} ${PDAL_UTIL_LIB_NAME}
+#    FILE
+#	        "${PDAL_BINARY_DIR}/PDALTargets.cmake")
 
-install(
-    EXPORT
-        PDALTargets
-    DESTINATION
-        "${PDAL_LIB_INSTALL_DIR}/cmake/PDAL")
+#install(
+#    EXPORT
+#        PDALTargets
+#    DESTINATION
+#        "${PDAL_LIB_INSTALL_DIR}/cmake/PDAL")
 include(${PDAL_CMAKE_DIR}/config.cmake)
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES)
 

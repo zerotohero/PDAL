@@ -60,7 +60,6 @@ macro(PDAL_ADD_LIBRARY _name)
     endif()
 
     install(TARGETS ${_name}
-        EXPORT PDALTargets
         RUNTIME DESTINATION ${PDAL_BIN_INSTALL_DIR}
         LIBRARY DESTINATION ${PDAL_LIB_INSTALL_DIR}
         ARCHIVE DESTINATION ${PDAL_LIB_INSTALL_DIR})
@@ -83,7 +82,6 @@ macro(PDAL_ADD_FREE_LIBRARY _name _library_type)
     if (NOT ${_library_type} STREQUAL "STATIC")
         target_compile_definitions(${_name} PRIVATE PDAL_DLL_EXPORT)
         install(TARGETS ${_name}
-            EXPORT PDALTargets
             RUNTIME DESTINATION ${PDAL_BIN_INSTALL_DIR}
             LIBRARY DESTINATION ${PDAL_LIB_INSTALL_DIR}
             ARCHIVE DESTINATION ${PDAL_LIB_INSTALL_DIR})
